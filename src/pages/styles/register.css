@@ -1,0 +1,41 @@
+.registration_field {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.registration_field button {
+	padding: 10px 20px; /*{top, bottom}, {left, right}*/
+	margin: 10px 0;
+	border: 1px solid #282c34;
+	border-radius: 5px;
+	font-weight: bold;
+	width: 150%;
+	background-color: #ccc;
+}
+
+.registration_field button:hover {
+	cursor: pointer;
+	background-color: white;
+}
+
+.registration_field input {
+	padding: 10px;
+	margin: 5px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-weight: bold;
+	width: 140%;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.registration_text {
+	color: #ccc;
+	font-weight: bold;
+	
+}
+
+

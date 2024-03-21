@@ -7,8 +7,8 @@
 const express = require('express'); // listen for POST requests
 const mongoose = require('mongoose'); // connect to MongoDB
 const cors = require('cors'); // allow cross-origin requests
-
 const app = express(); // create an Express app
+const port = 3001;
 
 // Connect to MongoDB Atlas
 mongoose.connect('mongodb+srv://neroxv1313:Snowfuzzyugen13-@mydb.vv5dhyk.mongodb.net/?retryWrites=true&w=majority&appName=myDB', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   username: String,
   email: String,
   password: String, // Note: In a real-world application, you should hash passwords
-});
+}); 
 
 // Create a model from the schema
 const User = mongoose.model('User', userSchema);
@@ -47,6 +47,6 @@ app.post('/users', (req, res) => {
 
 
 // Start the server
-app.listen(3001, () => {
-  console.log('Server is running on port 3001');
+app.listen(port, () => {
+  console.log('Server is running on port ' + port);
 });

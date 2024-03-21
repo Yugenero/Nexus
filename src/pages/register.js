@@ -16,7 +16,6 @@ function Register() {
 		.then(result => console.log(result))
 		.catch(error => console.log(error))
 	}; 
-	
 
 	return (
 		<div>

@@ -45,7 +45,6 @@ app.post('/users', (req, res) => {
 // Post endpoint for user login
 // Post endpoint for user deletion
 
-
 // Start the server
 app.listen(port, () => {
   console.log('Server is running on port ' + port);

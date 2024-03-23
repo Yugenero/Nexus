@@ -1,8 +1,31 @@
-.home_text {
+.home_ui {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	font-weight: bold;
 	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.home_text {
+	margin: 10px;
+	color: #ccc;
+	font-weight: bold;
+	position: inherit;
+	font-size: 4em;
+}
+
+.registration_button, .login_button {
+	padding: 10px 20px; /*{top, bottom}, {left, right}*/
+	margin: 3px 0;
+	border: 1px solid #282c34;
+	border-radius: 5px;
+	font-weight: bold;
+	width: 200px;
+	background-color: #ccc;
+}
+
+.registration_button:hover, .login_button:hover {
+	cursor: pointer;
+	background-color: white;
 }

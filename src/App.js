@@ -1,19 +1,22 @@
 import './App.css';
 import Register from './pages/register.js';
 import Home from './pages/home.js';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Home/>
-        {/**<Register/> */}
-      </header>
-      <body className="App-body">
-      </body>
-    </div>
-
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </header>
+        <body className="App-body">
+        </body>
+      </div>
+    </Router>
   );
 }
 

@@ -4,37 +4,72 @@
 	justify-content: center;
 	align-items: center;
 	font-weight: bold;
-	font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
 .registration_field button {
 	padding: 10px 20px; /*{top, bottom}, {left, right}*/
 	margin: 10px 0;
 	border: 1px solid #282c34;
 	border-radius: 5px;
 	font-weight: bold;
-	width: 150%;
+	width: 106%;
 	background-color: #ccc;
 }
-
 .registration_field button:hover {
 	cursor: pointer;
 	background-color: white;
 }
-
 .registration_field input {
 	padding: 10px;
 	margin: 5px 0;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	font-weight: bold;
-	width: 140%;
-	font-family: Georgia, 'Times New Roman', Times, serif;
+	width: 100%;
 }
 
 .registration_text {
+	color: white;
+	font-weight: bold;
+}
+.registration_text_terms {
+	display: flex;
+	margin-bottom: 20px;
+	color: #bbb;
+	font-size: 10px;
+}
+
+.registration_link {
+	color: #ccc;
+	text-decoration: underline;
+}
+.registration_link:visited {
+	color: #ccc;
+}
+
+.registration_navigation_back {
+	font-size: 15px;
+	border: 1px solid black;
+	background-color: black;
 	color: #ccc;
 	font-weight: bold;
+	position: absolute;
+	top: 5%;
+	left: 5%;
+}
+.registration_navigation_back:hover{ 
+	cursor: pointer;
+	font-style: underline;
+	color: white;
+}
+
+.registration_break {
+	border: none;
+	border-top: 1px solid #aaa;
+}
+
+.google_login_button {
+	text-align: center;
+	width: 100%;
 }
 
 

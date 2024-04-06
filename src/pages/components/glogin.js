@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { GoogleLogin } from 'react-google-login';
 
-
 const clientID = "1003989541364-doeegiq0q8s8q56heqj862ipmfqtqlhn.apps.googleusercontent.com";
 
 function GLogin() {
@@ -12,16 +11,20 @@ function GLogin() {
 		console.log('[Login Failed] res:', res);
 	};
 
-	/**useEffect(() => {
-		function start() {
-			gapi.client.init({
-				clientId: clientID,
-				scope: ""
-			})
+	useEffect(() => {
+		const start = () => {
+		  if (window.gapi) {
+			window.gapi.client.init({
+			  clientId: clientID,
+			  scope: "",
+			});
+		  }
 		};
-
-		gapi.load('client:auth2', start);
-	});**/
+	  
+		if (window.gapi) {
+		  window.gapi.load('client:auth2', start);
+		}
+	  }, []);
 
 	return(
 		<div id="signInButton">
@@ -33,11 +36,6 @@ function GLogin() {
 			onFailure={onFailure}
 			cookiePolicy={'single_host_origin'}
 			isSignedIn={true}
-			style={{
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center'
-			  }}
 			/>
 		</div>
 	);

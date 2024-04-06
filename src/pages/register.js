@@ -27,8 +27,6 @@ function Register() {
 
 	return (
 		<div>
-			<script src="https://apis.google.com/js/platform.js" async defer></script>
-
 			<button className="registration_navigation_back" onClick={goBack}>
 				BACK
 			</button>

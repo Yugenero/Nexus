@@ -71,5 +71,9 @@
 	text-align: center;
 	width: 100%;
 }
+.google_login_button:hover {
+	cursor: pointer;
+	color: white;
+}
 
 

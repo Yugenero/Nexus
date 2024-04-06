@@ -12,7 +12,6 @@ function Home() {
 
 	return (
 		<div>
-			<Header/>
 			<div className="home_ui">
 				<p className="home_text">BLGR</p>
 				<button className="registration_button" onClick={navigateToRegister}>Register</button>

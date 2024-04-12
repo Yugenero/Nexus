@@ -6,17 +6,21 @@ import '../styles/home.css';
 function Header() {
 
 	const navigate = useNavigate();
+	const navigateToHome = () => navigate('/');
 	const navigateToRegister = () => navigate('/register');
+	const navigateToBlogs = () => navigate('/archive');
+	const navigateToAbout = () => navigate('/about');
+	const navigateToMembership = () => navigate('/membership');
 
 	return (
 		<div className="header">	
-			<a className="header_logo">BLGR</a>
+			<a className="header_logo" onClick={navigateToHome}>BLGR</a>
 			<div className="header_nav">
-				<a className="header_link" href=""> About </a>
-				<a className="header_link" href=""> Membership </a>
-				<a className="header_link" href=""> Write </a>
-				<a className="header_link" onClick={navigateToRegister}> Register/Login </a>
-			</div>
+				<a className="header_link" onClick={navigateToBlogs}> Archive </a>
+				<a className="header_link" onClick={navigateToMembership}> Membership </a>
+				<a className="header_link" onClick={navigateToAbout}> About </a>
+				<a className="header_link" onClick={navigateToRegister}> Account </a>
+			</div> {/**the interesting thing about the nature of the universe */}
 		</div>
 	);
 }

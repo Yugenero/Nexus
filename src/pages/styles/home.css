@@ -3,7 +3,7 @@
  */
 .home_ui {
 	display: flex;
-	transform: translateY(350px);
+	transform: translateY(65px);
 	margin-bottom: 150px;
 	flex-direction: column;
 	justify-content: center;
@@ -11,7 +11,6 @@
 	font-weight: bold;
 	font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
 .home_text {
 	margin: 20px;
 	color: white;
@@ -21,21 +20,22 @@
 }
 .home_break {
 	border: none;
-	border-top: 1px solid rgb(20, 20, 20);
+	border-top: 1px solid rgb(50, 50, 50);
 	width: 100vw;
 }
 
-.registration_button, .login_button {
+/**
+ * Registration Page Styles
+ */
+.home_button_register {
 	padding: 10px 20px; /*{top, bottom}, {left, right}*/
-	margin: 3px 0;
-	border: 1px solid black;
+	margin: 20px 0;
+	border: 1px solid #ccc;
 	border-radius: 5px;
-	font-weight: bold;
 	width: 200px;
 	background-color: #ccc;
 }
-
-.registration_button:hover, .login_button:hover {
+.home_button_register:hover {
 	cursor: pointer;
 	background-color: white;
 }
@@ -56,11 +56,11 @@
   	width: 100vw;
 	background-color: black;
  	font-family: Georgia, 'Times New Roman', Times, serif;
-	border-bottom: rgb(20, 20, 20) 2px solid;
+	border-bottom: rgb(50, 50, 50) 1px solid;
 }
 .header_logo {
 	margin-left: 45px;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 .header_nav {
 	margin-right: 45px;

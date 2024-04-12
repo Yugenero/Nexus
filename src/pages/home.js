@@ -16,8 +16,8 @@ function Home() {
 	 */
 	useEffect(() => {
 		anime({
-			targets: '.home_text',
-			translatey: -250,
+			targets: '.home_ui',
+			translateY: 250,
 		});
 	});
 
@@ -27,8 +27,11 @@ function Home() {
 		<div>
 			<Header/>
 			<div className="home_ui">
-				<p className="home_text">Stay Connected</p>
+				<p className="home_text">Welcome to my blog</p>
 				<div className="home_break"></div>
+				<button className="home_button_register" onClick={navigateToRegister}>
+					Connect with me
+				</button>
 			</div>
 		</div>
 	);

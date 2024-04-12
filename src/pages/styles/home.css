@@ -1,5 +1,9 @@
+/**
+ * Home Page Styles
+ */
 .home_ui {
 	display: flex;
+	transform: translateY(350px);
 	margin-bottom: 150px;
 	flex-direction: column;
 	justify-content: center;
@@ -9,17 +13,22 @@
 }
 
 .home_text {
-	margin: 10px;
-	color: #ccc;
+	margin: 20px;
+	color: white;
 	font-weight: bold;
 	position: inherit;
-	font-size: 4em;
+	font-size: 3em;
+}
+.home_break {
+	border: none;
+	border-top: 1px solid rgb(20, 20, 20);
+	width: 100vw;
 }
 
 .registration_button, .login_button {
 	padding: 10px 20px; /*{top, bottom}, {left, right}*/
 	margin: 3px 0;
-	border: 1px solid #282c34;
+	border: 1px solid black;
 	border-radius: 5px;
 	font-weight: bold;
 	width: 200px;
@@ -35,25 +44,39 @@
  * Header Styles
  */
 .header {
-	font-weight: bold;
-	font-family: Georgia, 'Times New Roman', Times, serif;
+	position: fixed;
+	top: 0;
+	left: 0; 
+	right: 0;
+	z-index: 1000;
 	display: flex;
-	padding: 20px;
-	background-color: #aaa;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
+  	justify-content: space-between;
+  	align-items: center;
+  	padding: 6px 6px; /* top-bottom, left-right */
+  	width: 100vw;
+	background-color: black;
+ 	font-family: Georgia, 'Times New Roman', Times, serif;
+	border-bottom: rgb(20, 20, 20) 2px solid;
 }
 .header_logo {
+	margin-left: 45px;
 	font-size: 2em;
 }
 .header_nav {
 	margin-right: 45px;
 }
 .header_nav a {
+	color: rgb(78, 71, 71);
 	text-decoration: none;
-	font-size: 1.2em;
+	font-size: 0.7em;
 	font-style: none;
 	align-items: flex-start;
 	margin-right: 10px;
 }
+.header_nav a:hover {
+	color: white;
+}
+.header_link {
+	cursor: pointer;
+}
+

@@ -1,3 +1,5 @@
+This is my personal blogging website and newsletter where I share my own opinions on Lifestyle, Tech, CS/Engineering, among many other things
+
 In the project directory, you can run:
 
 ### `npm start`

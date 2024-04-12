@@ -2,9 +2,6 @@
 
 .App {
   text-align: center;
-}
-
-.App-content {
   background-color: black;
   min-height: 100vh;
   display: flex;

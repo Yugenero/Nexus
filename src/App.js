@@ -8,18 +8,17 @@ function App() {
 
   return (
     <Router>
+      
       <div className="App">
-        <Header/>
-        <header className="App-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
           </Routes>
-        </header>
         <body className="App-body">
 
         </body>
       </div>
+
     </Router>
   );
 }

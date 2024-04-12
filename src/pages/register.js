@@ -16,10 +16,12 @@ function Register() {
 	// event handler for the form submission
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		axios.post('http://localhost:3001/users', {username, email, password})
+		axios.post('http://localhost:3000/users', {username, email, password})
 		.then(result => console.log(result))
 		.catch(error => console.log(error))
 	}; 
+
+	// navigation routes
 	const navigate = useNavigate();
 	const goBack = () => {
 		navigate('/');

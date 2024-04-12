@@ -1,3 +1,7 @@
+.registration {
+	transform: translateY(180px);
+}
+
 .registration_field {
 	display: flex;
 	flex-direction: column;
@@ -8,7 +12,7 @@
 .registration_field button {
 	padding: 10px 20px; /*{top, bottom}, {left, right}*/
 	margin: 10px 0;
-	border: 1px solid #282c34;
+	border: 1px solid black;
 	border-radius: 5px;
 	font-weight: bold;
 	width: 106%;
@@ -45,7 +49,6 @@
 .registration_link:visited {
 	color: #ccc;
 }
-
 .registration_navigation_back {
 	font-size: 15px;
 	border: 1px solid black;

@@ -2,6 +2,7 @@ import './App.css';
 import Register from './pages/register.js';
 import Home from './pages/home.js';
 import Archive from './pages/archive.js';
+import About from './pages/about.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/blogs" element={<Archive />} />
+            <Route path="/archive" element={<Archive />} />
+            <Route path="/about" element={<About />} />
           </Routes> 
         <body className="App-body">
 

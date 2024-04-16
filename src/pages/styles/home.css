@@ -59,8 +59,12 @@
 	border-bottom: rgb(50, 50, 50) 1px solid;
 }
 .header_logo {
+	color: white;
 	margin-left: 45px;
 	font-size: 1.5em;
+}
+.header_logo:hover {
+	cursor: pointer;
 }
 .header_nav {
 	margin-right: 45px;

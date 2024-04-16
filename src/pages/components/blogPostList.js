@@ -13,18 +13,18 @@ import { Link } from "react-router-dom";
 function BlogPostList( {posts} ) {
 	return (
 		<div className="blog_post_list">
+			{/** create an array of link components */}
 			{posts.map(post => (
-				<Link className="blog_post_list_link "key={posts.id} to={`/blog/${post.id}`}>
+				<Link className="blog_post_list_link" key={post.id} to={`/blog/${post.id}`}>
 					{/**alt incase user cant see img */}
-					<img src={post.imageUrl} alt={post.title} /> 
+					<img src={post.imgUrl} alt={post.title} /> 
 					<h2>{post.title}</h2>
-					<h4>{post.category}</h4>
 					<h4>{post.author}</h4>
 					<h4>{post.date}</h4>
+					<div className="blog_post_list_break"></div>
 				</Link>
-			))};
+			))}
 		</div>
-
 	);
 };
 

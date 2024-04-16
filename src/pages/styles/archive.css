@@ -47,4 +47,18 @@
 	font-size: 20px;
 	transform: translateY(100px);
 }
-
+.blog_post_list_link {
+	width: 30%;
+	color: rgb(78, 71, 71);
+	text-decoration: none;
+	font-style: none;
+}
+.blog_post_list_link:hover {
+	cursor: pointer;
+	color: white;
+}
+.blog_post_list_break {
+	border: none;
+	border-top: 1px solid rgb(50, 50, 50);
+	width: 100%;
+}

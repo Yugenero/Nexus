@@ -40,13 +40,16 @@
  * display affects the content within an item. (internal)
  */
 .blog_post_list {
-	display: grid;
+	display: flex;
 	position: relative;
 	flex-direction: column;
 	align-items: center;
+	border-radius: 20px;
 	width: 500px;
 	font-size: 20px;
 	transform: translateY(100px);
+	gap: 20px;
+	background-color: black;
 }
 .blog_post_list_link {
 	display: flex;
@@ -75,8 +78,11 @@
 	font-weight: bold;
 } .bpl_excerpt {
 	font-size: 15px;
+	margin-top: 25px;
 } .bpl_footer {
-	font-size: 15px;
+	font-family: 'Courier New', Courier, monospace;
+	margin-top: 28px;
+	font-size: 12px;
 } 
 
 .blog_post_list_link_img {
@@ -86,4 +92,11 @@
 	height: 130px;
 	width: 200px;
 }
+
+.line_break {
+	border-top: 1px solid rgb(50, 50, 50);
+	width: 100%;
+}
+
+
 

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import anime from 'animejs';
 import { useNavigate } from 'react-router-dom';
 import Header from "./components/header";
+import Footer from "./components/footer";
 import './styles/home.css';
 
 function Home() {
@@ -33,6 +34,7 @@ function Home() {
 					Connect with me
 				</button>
 			</div>
+			<Footer/>
 		</div>
 	);
 }

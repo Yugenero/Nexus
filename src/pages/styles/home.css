@@ -84,3 +84,11 @@
 	cursor: pointer;
 }
 
+/**
+ * Footer Styles
+ */
+.footer {
+	display: flex;
+	position: relative; 
+}
+

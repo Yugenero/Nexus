@@ -12,9 +12,11 @@ import { Link } from "react-router-dom";
  */
 function BlogPostList( {posts} ) {
 	return (
+		
 		<div className="blog_post_list">
 			{/** create an array of link components */}
 			{posts.map(post => (
+				<>
 				<Link className="blog_post_list_link" key={post.id} to={`/blog/${post.id}`}>
 					{/**alt incase user cant see img */}
 					
@@ -26,6 +28,8 @@ function BlogPostList( {posts} ) {
 
 					<img className="blog_post_list_link_img" src={post.imgUrl} alt={post.title} /> 
 				</Link>
+				<div className="line_break"></div>
+			</>
 			))}
 		</div>
 	);

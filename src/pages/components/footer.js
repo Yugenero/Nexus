@@ -1,19 +1,42 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, Link } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import '../styles/home.css';
 
-// create header component to return to the home.js file
+/**
+ * Footer component that utilizes material ui styling
+ * @returns Footer component with material ui styling
+ */
+
+const useStyles = makeStyles({
+	footer: {
+		display: 'flex',
+		position: 'absolute',
+		backgroundColor: '#333',
+		bottom: 0,
+		width:'100vm',
+	},
+});
+
 function Footer() {
+	
+	const classes = useStyles();
 
 	return (
-		<div className="footer">	
-			<div className="footer_nav">
-				<a className="footer_link" href=""> Archive </a>
-				<a className="footer_link" href=""> Membership </a>
-				<a className="footer_link" href=""> About </a>
-				<a className="footer_link" href=""> Account </a>
-			</div>
-		</div>
+		<AppBar className={classes.footer} position="static">
+			<Toolbar>
+			<Typography variant="h6" color="inherit">
+				Footer
+			</Typography>
+			<Link color="inherit" href="#">
+				Link 1
+			</Link>
+			<Link color="inherit" href="#">
+				Link 2
+			</Link>
+			{/* Add more links as needed */}
+			</Toolbar>
+  		</AppBar>
 	);
 }
 

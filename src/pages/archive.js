@@ -25,6 +25,7 @@ function Archive() {
 				<a className="blogs_header_topiclink" onClick={navigateToFitness}>Fitness</a>
 			</div>
 			<div className="blogs_break"></div>
+			{/**Container for the blog list link body*/}
 			<div className="blogs_body">
 				<BlogPostList posts={posts}/>
 			</div>

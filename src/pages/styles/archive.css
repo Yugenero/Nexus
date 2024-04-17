@@ -1,5 +1,5 @@
 /**
- * Archive Page
+ * Archive Page (under construction)
  */
 .blogs_ui {
 	display: flex;
@@ -34,31 +34,56 @@
 	width: 100vw;
 }
 
+/* blog post list container */
 /**
- * Blog Post List
+ * position manipulates the location of the item on the web page. (external)
+ * display affects the content within an item. (internal)
  */
 .blog_post_list {
-	display: flex;
+	display: grid;
 	position: relative;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	width: 100vw;
+	width: 500px;
 	font-size: 20px;
 	transform: translateY(100px);
 }
 .blog_post_list_link {
-	width: 30%;
-	color: rgb(78, 71, 71);
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	flex-direction: row;
 	text-decoration: none;
-	font-style: none;
-}
-.blog_post_list_link:hover {
-	cursor: pointer;
+	justify-content: start;
+	margin: 10px;
+	color: #aaa;
+	height: 130px;
+} .blog_post_list_link:hover {
 	color: white;
 }
-.blog_post_list_break {
-	border: none;
-	border-top: 1px solid rgb(50, 50, 50);
+
+.blog_post_list_link_text{
+	display: flex;
+	flex-direction: column;
+	position: relative;
 	width: 100%;
+	font-size: 15px;
+} .bpl_title, .bpl_excerpt, .bpl_footer {
+	margin: 0;
+	text-align: left;
+	font-size: 20px;
+	font-weight: bold;
+} .bpl_excerpt {
+	font-size: 15px;
+} .bpl_footer {
+	font-size: 15px;
+} 
+
+.blog_post_list_link_img {
+	position: relative;
+	margin-left: auto;
+	border-radius: 10px;
+	height: 130px;
+	width: 200px;
 }
+

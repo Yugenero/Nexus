@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from './components/header';
 import BlogPostList from "./components/blogPostList";
 import posts from "./components/blogPostData";
-import anime from 'animejs';
+import Footer from "./components/footer";
 
 
 function Archive() {
@@ -29,6 +29,7 @@ function Archive() {
 			<div className="blogs_body">
 				<BlogPostList posts={posts}/>
 			</div>
+			<Footer/>
 		</div>
 	);
 };

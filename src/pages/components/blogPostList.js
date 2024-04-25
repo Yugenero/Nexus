@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import Footer from "./footer";
 
 /**
  * create blog post list with posts as parameter
@@ -19,13 +20,11 @@ function BlogPostList( {posts} ) {
 				<>
 				<Link className="blog_post_list_link" key={post.id} to={`/blog/${post.id}`}>
 					{/**alt incase user cant see img */}
-					
 					<div className="blog_post_list_link_text">
 						<h2 className="bpl_title">{post.title}</h2>
 						<h4 className="bpl_excerpt">{post.excerpt}</h4>
 						<h4 className="bpl_footer">{post.date} - <span>{post.author}</span></h4>
 					</div>
-
 					<img className="blog_post_list_link_img" src={post.imgUrl} alt={post.title} /> 
 				</Link>
 				<div className="line_break"></div>

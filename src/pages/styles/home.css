@@ -1,44 +1,62 @@
 /**
  * Home Page Styles
  */
-.home_ui {
+.home_ui_container {
 	display: flex;
-	transform: translateY(65px);
-	margin-bottom: 150px;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	font-weight: bold;
-	font-family: Georgia, 'Times New Roman', Times, serif;
-}
-.home_text {
-	margin: 20px;
-	color: white;
-	font-weight: bold;
-	position: inherit;
-	font-size: 3em;
-}
-.home_break {
-	border: none;
-	border-top: 1px solid rgb(50, 50, 50);
+	font-family: var(--font-family-text);
+	color: var(--primary-color);
 	width: 100vw;
+	height: 100vh; /** Default value: calculate the height of the content */
 }
+.hc {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 60%;
+	height: 80%;
+	padding: 20px;
+	margin: 0 auto;
 
+}
+/** Container for the recent blog posts */
+.hc_recent{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height: 50%;
+	width: 100%;
+
+} .hc_recent_img {
+	border-radius: 3%;
+	width: 50%;
+	height: 100%;
+	object-fit: cover;
+
+} .hc_recent_text {
+	display: flex;
+	flex-direction: column;	
+	justify-content: center;
+	overflow: hidden;
+	font-size: 0.8em;
+	margin: 0;
+	padding: 0 20px;
+	width: 50%; 
+
+}.hc_recent_links {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 20%;
+	width: 100%;
+}
 /**
  * Registration Page Styles
  */
-.home_button_register {
-	padding: 10px 20px; /*{top, bottom}, {left, right}*/
-	margin: 20px 0;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	width: 200px;
-	background-color: #ccc;
-}
-.home_button_register:hover {
-	cursor: pointer;
-	background-color: white;
-}
+
 
 /**
  * Header Styles
@@ -52,16 +70,17 @@
 	display: flex;
   	justify-content: space-between;
   	align-items: center;
-  	padding: 6px 6px; /* top-bottom, left-right */
+  	padding: 4px 6px; /* top-bottom, left-right */
   	width: 100vw;
-	background-color: black;
- 	font-family: Georgia, 'Times New Roman', Times, serif;
-	border-bottom: rgb(50, 50, 50) 1px solid;
+	background-color: var(--background-color);
+ 	font-family: var(--font-family-design);
+	border-bottom: var(--break-color) 1px solid;
 }
 .header_logo {
-	color: white;
+	color: var(--secondary-color);
+	padding: 15px;
 	margin-left: 45px;
-	font-size: 1.5em;
+	font-size: 1em;
 }
 .header_logo:hover {
 	cursor: pointer;
@@ -69,16 +88,16 @@
 .header_nav {
 	margin-right: 45px;
 }
-.header_nav a {
-	color: rgb(78, 71, 71);
-	text-decoration: none;
-	font-size: 0.7em;
-	font-style: none;
+.header_nav_item {
 	align-items: flex-start;
-	margin-right: 10px;
+	padding: 20px;
+	vertical-align: 5px;
+	border-radius: 20px;
+	color: var(--secondary-color);
 }
 .header_nav a:hover {
-	color: white;
+	color: var(--background-color);
+	background-color: var(--secondary-color);
 }
 .header_link {
 	cursor: pointer;
@@ -87,8 +106,35 @@
 /**
  * Footer Styles
  */
-.footer {
+.footer_logo_container {
 	display: flex;
-	position: relative; 
+	flex-direction: column;
+	padding: 2em 2em;
+
+}.footer_logo {
+	user-select: none;
+	align-self: center;
+	font-family: var(--font-family-design);
+	font-size: 1em;
+	padding: 0.5em 1em; /* Top bottom left right*/
+	color: var(--secondary-color);
+
+}.footer_logo_text {
+	user-select: none;
+	position: relative;
+	justify-content: flex-start;
+	font-family: var(--font-family-text);
+	color: var(--primary-color);
+	font-size: 0.3em;
+}
+.footer_socials_container {
+	display: flex;
+	flex-direction: column;
+	padding: 0 2em;
+}
+.footer_socials {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
 }
 

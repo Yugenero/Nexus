@@ -22,7 +22,6 @@ function App() {
             <Route path="/blog/:id" component={BlogPost} />
           </Routes> 
         <body className="App-body">
-
         </body>
       </div>
 

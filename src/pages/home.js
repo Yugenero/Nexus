@@ -105,9 +105,7 @@ function Home() {
 					<div className="hc_recent_text">
 						<p className={classes.hc_text_title}> {recentPost0.title} </p>
 						<p className={classes.hc_text_excerpt}> {recentPost0.excerpt} </p>
-						<p className={classes.hc_text_data}> {recentPost0.date} • 
-							<a className={classes.hc_me} href=""> {recentPost0.author} </a>
-						</p>
+						<p className={classes.hc_text_data}> {recentPost0.date} • <a className={classes.hc_me} href=""> {recentPost0.author} </a> </p>
 					</div>
 				</Link>
 

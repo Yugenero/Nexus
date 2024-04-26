@@ -16,6 +16,7 @@ function Archive() {
 	const navigateToFitness = () => navigate('/');
 
 	return (
+		<div>
 		<div className="blogs_ui">
 			<Header/>
 			<div className="blogs_header">
@@ -26,10 +27,9 @@ function Archive() {
 			</div>
 			<div className="blogs_break"></div>
 			{/**Container for the blog list link body*/}
-			<div className="blogs_body">
-				<BlogPostList posts={posts}/>
-			</div>
+			<BlogPostList posts={posts}/>
 			<Footer/>
+		</div>
 		</div>
 	);
 };

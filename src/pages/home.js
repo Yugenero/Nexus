@@ -2,11 +2,13 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Link, IconButton } from '@material-ui/core';
+import BlogPostRecent from "./components/blogPostRecent";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import posts from "./components/blogPostData";
 import anime from 'animejs';
 import './styles/home.css';
+import { LinkSharp } from "@material-ui/icons";
 
 const styles = makeStyles(() => ({
 	hc_text_title: {
@@ -41,6 +43,11 @@ const styles = makeStyles(() => ({
 		border: '0.001em solid var(--break-color)',
 		margin: '30px 0',
 	},
+	v_break: {
+		height: '100%',
+		borderRight: '1px solid var(--break-color)',
+		margin: '0 30px',
+	},
 }));
 
 function Home() {
@@ -48,7 +55,10 @@ function Home() {
 	// get the styles
 	const classes = styles();
 	// get most recent blog post data
-	const recentPost = posts[posts.length - 1];
+	const recentPost0 = posts[posts.length - 1];
+	const recentPost1 = posts[posts.length - 2];
+	const recentPost2 = posts[posts.length - 3];
+	const recentPost3 = posts[posts.length - 4];
 
 	// navigation routes
 	const navigate = useNavigate();
@@ -63,7 +73,7 @@ function Home() {
 	useEffect(() => {
 		anime({
 			targets: '.hc',
-			translateY: ['200%', '0%'],
+			translateY: ['100%', '0%'],
 			duration: 1000,
 			// determine speed of animation at different points
 			easing: 'easeOutElastic(1, .5)',
@@ -74,32 +84,47 @@ function Home() {
 	//  return the home ui component
 	return (
 		<div>
+
 			<Header/>
+
 			<div className="home_ui_container">
 				<div className="hc">
-				<div className="hc_recent">
-					<img className="hc_recent_img" src={recentPost.imgUrl}/>
+
+				<Link className="hc_recent" href="" style={{textDecoration: 'none'}}>
+					<img className="hc_recent_img" src={recentPost0.imgUrl}/>
 					<div className="hc_recent_text">
+						{/** most recent blog post  */}
 						<p className={classes.hc_text_title}>
-							{recentPost.title}
+							{recentPost0.title}
 						</p>
 						<p className={classes.hc_text_excerpt}>
-							{recentPost.excerpt}
+							{recentPost0.excerpt}
 						</p>
 						<p className={classes.hc_text_data}>
-							{recentPost.date} • <a className={classes.hc_me} href="">{recentPost.author} </a>
+							{recentPost0.date} • <a className={classes.hc_me} href="">{recentPost0.author} </a>
 						</p>
 					</div>
-				</div>
-				<div className={classes.break}></div>
-				<div className="hc_recent_links">
-				</div>
-				</div>
+				</Link>
 
-	
-				{/*<img className="home_img" src="/images/CS_flow.jpeg" alt="home_img" />*/}
+				<div className={classes.break}> </div>
+
+				<div className="hc_recent_container">
+					<div className="hc_recent_title">
+						<p> Most Recent </p>
+					</div>
+					<div className="hc_recent_links">
+						<BlogPostRecent recentPost={recentPost1} />
+						<div className={classes.v_break}></div>
+						<BlogPostRecent recentPost={recentPost2} />
+						<div className={classes.v_break}></div>
+						<BlogPostRecent recentPost={recentPost3} />
+					</div>
+				</div>
+				</div>
 			</div>
+
 			<Footer/>
+
 		</div>
 	);
 }

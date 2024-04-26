@@ -78,22 +78,22 @@ function Footer() {
 					<div className="footer_socials">
 						<IconButton className={classes.footerSocialButton}> 
 							<Link href="https://www.instagram.com/nero.yugen/" target="_blank" className={classes.socialLinkI}>
-								<InstagramIcon />
+								<InstagramIcon style={{fontSize: '1.1em'}} />
 							</Link>
 						</IconButton>
 						<IconButton className={classes.footerSocialButton}>
 							<Link href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" className={classes.socialLinkL}>
-								<LinkedInIcon />
+								<LinkedInIcon style={{fontSize: '1.1em'}} />
 							</Link>
 						</IconButton>
 						<IconButton className={classes.footerSocialButton}>
 							<Link href="mailto:neroxv1313@gmail.com" className={classes.socialLinkM}>
-								<EmailIcon />
+								<EmailIcon style={{fontSize: '1.1em'}} />
 							</Link>
 						</IconButton>
 						<IconButton className={classes.footerSocialButton}>
 							<Link href="https://github.com/Yugenero" target="_blank" className={classes.socialLinkG}>
-								<GitHubIcon />
+								<GitHubIcon style={{fontSize: '1.1em'}} />
 							</Link>
 						</IconButton>
 					</div>

@@ -20,9 +20,8 @@
 	height: 80%;
 	padding: 20px;
 	margin: 0 auto;
-
 }
-/** Container for the recent blog posts */
+/** Container for the recent blog post */
 .hc_recent{
 	display: flex;
 	flex-direction: row;
@@ -32,6 +31,7 @@
 	text-decoration: unset;
 } .hc_recent:visited {
 	color: var(--primary-color);
+} .hc_recent:hover {
 }
 
 .hc_recent_img {
@@ -55,13 +55,15 @@
 	height: auto;
 	width: 100%;
 } .hc_recent_title p {
+	display: flex;
 	text-align: left;
+	justify-content: space-between;
 	font-size: 0.7em;
 	margin: 0;
 } .hc_recent_links {
 	display: flex;
 	flex-direction: row;
-	margin: 15px 0;
+	margin-top: 25px;
 }
 
 

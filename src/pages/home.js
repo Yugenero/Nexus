@@ -9,6 +9,7 @@ import posts from "./components/blogPostData";
 import anime from 'animejs';
 import './styles/home.css';
 import { LinkSharp } from "@material-ui/icons";
+import { Cursor } from "mongoose";
 
 const styles = makeStyles(() => ({
 	hc_text_title: {
@@ -46,7 +47,15 @@ const styles = makeStyles(() => ({
 	v_break: {
 		height: '100%',
 		borderRight: '1px solid var(--break-color)',
-		margin: '0 30px',
+		margin: '0 15px',
+	},
+	view_all: {
+		fontSize: '0.8em',
+		fontWeight: 'normal',
+		'&:hover': {
+			cursor: 'pointer',
+			textDecoration: 'underline',
+		},
 	},
 }));
 
@@ -63,6 +72,7 @@ function Home() {
 	// navigation routes
 	const navigate = useNavigate();
 	const navigateToRegister = () => navigate('/register');
+	const navigateToBlogs = () => navigate('/archive');
 	const footerRef = useRef(null);
 	const scrollToFooter = () => footerRef.current.scrollIntoView({behavior: 'smooth'});
 
@@ -93,15 +103,10 @@ function Home() {
 				<Link className="hc_recent" href="" style={{textDecoration: 'none'}}>
 					<img className="hc_recent_img" src={recentPost0.imgUrl}/>
 					<div className="hc_recent_text">
-						{/** most recent blog post  */}
-						<p className={classes.hc_text_title}>
-							{recentPost0.title}
-						</p>
-						<p className={classes.hc_text_excerpt}>
-							{recentPost0.excerpt}
-						</p>
-						<p className={classes.hc_text_data}>
-							{recentPost0.date} • <a className={classes.hc_me} href="">{recentPost0.author} </a>
+						<p className={classes.hc_text_title}> {recentPost0.title} </p>
+						<p className={classes.hc_text_excerpt}> {recentPost0.excerpt} </p>
+						<p className={classes.hc_text_data}> {recentPost0.date} • 
+							<a className={classes.hc_me} href=""> {recentPost0.author} </a>
 						</p>
 					</div>
 				</Link>
@@ -110,7 +115,9 @@ function Home() {
 
 				<div className="hc_recent_container">
 					<div className="hc_recent_title">
-						<p> Most Recent </p>
+						<p> Most Recent 
+							<a className={classes.view_all} onClick={navigateToBlogs}>View All</a> 
+						</p> 
 					</div>
 					<div className="hc_recent_links">
 						<BlogPostRecent recentPost={recentPost1} />

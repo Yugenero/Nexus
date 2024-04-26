@@ -11,9 +11,9 @@ import '../styles/home.css';
 // makeStyles hook for custom header styling
 const headerStyles = makeStyles((theme) => ({
 	header_nav_item: {
+		borderRadius: '10%',
 		color: 'var(--primary-color)',
 		'&:hover' : {
-			color: 'var(--accent-color1)',
 		},
 	},
 	tooltip: {

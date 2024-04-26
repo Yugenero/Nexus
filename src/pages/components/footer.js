@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 		justifyContent: 'space-between',
 	},
 	footerSocialButton: {
-		borderRadius: '20%',
+		borderRadius: '10%',
 	},
 	
 	socialLinkI: {

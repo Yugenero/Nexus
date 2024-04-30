@@ -11,7 +11,7 @@ const app = express(); // create an Express app
 const port = 3001;
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://neroxv1313:Snowfuzzyugen13-@mydb.vv5dhyk.mongodb.net/?retryWrites=true&w=majority&appName=myDB', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://neroxv1313:<password>@mydb.vv5dhyk.mongodb.net/?retryWrites=true&w=majority&appName=myDB', { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() => console.log('Connected to MongoDB'))
 	.catch(err => console.log('Error: ' + err));
 

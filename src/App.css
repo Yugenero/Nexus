@@ -10,4 +10,5 @@
   min-width: 100vw;
   font-size: calc(10px + 2vmin);
   background-color: var(--background-color);
+  
 }

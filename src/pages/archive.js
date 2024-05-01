@@ -18,6 +18,7 @@ function Archive() {
 	return (
 		<div>
 		<div className="blogs_ui">
+			<></>
 			<Header/>
 			<div className="blogs_header">
 				<a className="blogs_header_topiclink" onClick={navigateToCS}>CS & Maths</a>

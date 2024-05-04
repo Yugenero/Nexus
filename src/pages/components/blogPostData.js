@@ -2,6 +2,8 @@ import React from "react";
 
 /**
  * Posts array to hold blog post data
+ * notes to self for tomrorrow: 
+ * use markdown to write blog posts; vercel or netlify to host; mongo for some other shit
  */
 const posts = [
 	{

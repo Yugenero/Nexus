@@ -67,6 +67,15 @@
 	object-fit: cover;
 }
 
+.post_body {
+	font-family: var(--font-family-design);
+	font-size: 0.7em;
+	letter-spacing: 1px;
+	font-weight: 300;
+	line-height: 2; /*not really sure what unit this is in*/
+	text-align: left;
+}
+
 .post_img {
 	justify-content: center;
 	width: 100%;

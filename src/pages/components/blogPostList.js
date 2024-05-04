@@ -18,7 +18,7 @@ function BlogPostList( {posts} ) {
 			{/** create an array of link components */}
 			{posts.map(post => (
 				<>
-				<Link className="blog_post_list_link" key={post.id} to={`/blog/${post.id}`}>
+				<Link className="blog_post_list_link" key={post.id} to={`/p/${post.id}`}>
 					{/**alt incase user cant see img */}
 					<div className="blog_post_list_link_text">
 						<p className="bpl_title">{post.title}</p>
@@ -26,6 +26,7 @@ function BlogPostList( {posts} ) {
 						<p className="bpl_footer">{post.date} • <span>{post.author}</span></p>
 					</div>
 					<img className="blog_post_list_link_img" src={post.imgUrl} alt={post.title} /> 
+					
 				</Link>
 				<div className="line_break"></div>
 			</>

@@ -18,12 +18,15 @@ const useStyles = makeStyles({
 		flexDirection: 'row',
 		position: 'static',
 		fontFamily: 'var(--font-family-text)',
-		width:'100vw',
+		width:'100vw', 
 		backgroundColor: 'var(--background-color)',
 		justifyContent: 'space-between',
 	},
 	footerSocialButton: {
 		borderRadius: '10%',
+		'&:hover': {
+			backgroundColor: 'white',
+		},
 	},
 	
 	socialLinkI: {

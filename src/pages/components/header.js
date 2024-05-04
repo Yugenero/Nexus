@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import ArchiveIcon from '@material-ui/icons/Archive';
 import InfoIcon from '@material-ui/icons/Info';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { makeStyles } from '@material-ui/core/styles';
 import '../styles/home.css';
 
@@ -53,7 +53,7 @@ function Header() {
 			</Tooltip>
 			<Tooltip title="Account" classes={{ tooltip: classes.tooltip }}>
 				<IconButton className={classes.header_nav_item} onClick={navigateToRegister}>
-					<AccountCircleIcon />
+					<AccountBoxIcon />
 				</IconButton>
         	</Tooltip>
 			</div> 

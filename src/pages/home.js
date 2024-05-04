@@ -100,7 +100,8 @@ function Home() {
 			<div className="home_ui_container">
 				<div className="hc">
 
-				<Link className="hc_recent" href="" style={{textDecoration: 'none'}}>
+				<Link className="hc_recent" href={`/p/${recentPost0.id}`}
+				style={{textDecoration: 'none'}}>
 					<img className="hc_recent_img" src={recentPost0.imgUrl}/>
 					<div className="hc_recent_text">
 						<p className={classes.hc_text_title}> {recentPost0.title} </p>
@@ -118,11 +119,11 @@ function Home() {
 						</p> 
 					</div>
 					<div className="hc_recent_links">
-						<BlogPostRecent recentPost={recentPost1} />
+							<BlogPostRecent recentPost={recentPost1} />
 						<div className={classes.v_break}></div>
-						<BlogPostRecent recentPost={recentPost2} />
+							<BlogPostRecent recentPost={recentPost2} />
 						<div className={classes.v_break}></div>
-						<BlogPostRecent recentPost={recentPost3} />
+							<BlogPostRecent recentPost={recentPost3} />
 					</div>
 				</div>
 				</div>

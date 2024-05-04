@@ -1,3 +1,8 @@
+a {
+	text-decoration: none;
+	color: var(--primary-color);
+}
+
 /**
  * Home Page Styles
  */
@@ -32,6 +37,7 @@
 } .hc_recent:visited {
 	color: var(--primary-color);
 } .hc_recent:hover {
+	cursor: pointer;
 }
 
 .hc_recent_img {

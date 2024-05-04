@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import './styles/register.css';
-import GLogin from './components/glogin';
 import axios from 'axios';
 
 const clientID = "1003989541364-doeegiq0q8s8q56heqj862ipmfqtqlhn.apps.googleusercontent.com";
@@ -61,7 +60,6 @@ function Register() {
 					<button className="registration_button" type="submit">Create Account</button>
 				</form>
 				<hr className="registration_break" />
-				<GLogin />
 			</div>
 		</div>
 	);

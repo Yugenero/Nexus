@@ -73,7 +73,7 @@ function Footer() {
 		<AppBar className={classes.footer} position="static">
 			<Toolbar className={classes.footer}>
 				<div className="footer_logo_container">
-				<Typography className="footer_logo" variant="a">DevBlog </Typography>
+				<Typography className="footer_logo" variant="a"> DevBlog </Typography>
 					<Typography className="footer_logo_text" variant="a"> © 2024 Nelson Rodriguez. All Rights Reserved.
 				</Typography>
 				</div>

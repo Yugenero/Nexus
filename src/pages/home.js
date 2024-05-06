@@ -1,15 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Link, IconButton } from '@material-ui/core';
 import BlogPostRecent from "./components/blogPostRecent";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import posts from "./components/blogPostData";
-import anime from 'animejs';
+import postList from "./data/posts.json";
+import { animateImage, resetAnimateImage } from "./animations/homeAnimations";
 import './styles/home.css';
-import { LinkSharp } from "@material-ui/icons";
-import { Cursor } from "mongoose";
 
 const styles = makeStyles(() => ({
 	hc_text_title: {
@@ -60,49 +58,29 @@ const styles = makeStyles(() => ({
 }));
 
 function Home() {
-
-	// get the styles
-	const classes = styles();
-	// get most recent blog post data
-	const recentPost0 = posts[posts.length - 1];
-	const recentPost1 = posts[posts.length - 2];
-	const recentPost2 = posts[posts.length - 3];
-	const recentPost3 = posts[posts.length - 4];
-
 	// navigation routes
 	const navigate = useNavigate();
-	const navigateToRegister = () => navigate('/register');
 	const navigateToBlogs = () => navigate('/archive');
-	const footerRef = useRef(null);
-	const scrollToFooter = () => footerRef.current.scrollIntoView({behavior: 'smooth'});
+	const classes = styles();
 
-	/**
-	 * recall that useEffect is used for operations that dont normally fit the
-	 * render and return cycle: only play the animation once
-	 */
-	useEffect(() => {
-		anime({
-			targets: '.hc',
-			translateY: ['100%', '0%'],
-			duration: 1000,
-			// determine speed of animation at different points
-			easing: 'easeOutElastic(1, .5)',
-		});
-	});
+	// get most recent blog post data
+	const recentPost0 = postList[postList.length - 1];
+	const recentPost1 = postList[postList.length - 2];
+	const recentPost2 = postList[postList.length - 3];
+	const recentPost3 = postList[postList.length - 4];
 
-
-	//  return the home ui component
+	const cheer = new Audio('/sounds/cheer.mp3');
+	
 	return (
 		<div>
-
 			<Header/>
-
 			<div className="home_ui_container">
 				<div className="hc">
 
 				<Link className="hc_recent" href={`/p/${recentPost0.id}`}
-				style={{textDecoration: 'none'}}>
-					<img className="hc_recent_img" src={recentPost0.imgUrl}/>
+				style={{textDecoration: 'none'}}> 
+					<img className="hc_recent_img" src={recentPost0.imgURL} />
+					{console.log(recentPost0.imgURL)}
 					<div className="hc_recent_text">
 						<p className={classes.hc_text_title}> {recentPost0.title} </p>
 						<p className={classes.hc_text_excerpt}> {recentPost0.excerpt} </p>
@@ -128,7 +106,6 @@ function Home() {
 				</div>
 				</div>
 			</div>
-
 			<Footer/>
 
 		</div>

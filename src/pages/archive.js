@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import Header from './components/header';
 import BlogPostList from "./components/blogPostList";
-import posts from "./components/blogPostData";
+import postList from "./data/posts.json";
 import Footer from "./components/footer";
 import './styles/archive.css';
 
@@ -18,7 +18,6 @@ function Archive() {
 	return (
 		<div>
 		<div className="blogs_ui">
-			<></>
 			<Header/>
 			<div className="blogs_header">
 				<a className="blogs_header_topiclink" onClick={navigateToCS}>CS & Maths</a>
@@ -27,8 +26,7 @@ function Archive() {
 				<a className="blogs_header_topiclink" onClick={navigateToFitness}>Fitness</a>
 			</div>
 			<div className="blogs_break"></div>
-			{/**Container for the blog list link body*/}
-			<BlogPostList posts={posts}/>
+			<BlogPostList posts={postList}/>
 			<Footer/>
 		</div>
 		</div>

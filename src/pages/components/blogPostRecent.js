@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import posts from './blogPostData';
 import { Link } from 'react-router-dom';
 
 const styles = makeStyles(() => ({
@@ -7,6 +6,7 @@ const styles = makeStyles(() => ({
 		display: 'flex',
 		flexDirection: 'row',
 		width: '100%',
+		height: '80px',
 		textDecoration: 'none',
 		'&:visited': {
 			color: 'var(--primary-color)',
@@ -55,16 +55,14 @@ const styles = makeStyles(() => ({
 }));
 
 function BlogPostRecent({ recentPost }) {
-
 	const classes = styles();
-
 	return (
 		<Link className={classes.hc_container} to={`/p/${recentPost.id}`}>
 			<div className={classes.hc_container_text}>
 				<p className={classes.hc_text_title}> {recentPost.title} </p>
-				<p className={classes.hc_text_data}> {recentPost.shortDate} • <a className={classes.hc_me} href="">{recentPost.author} </a> </p>
+				<p className={classes.hc_text_data}> {recentPost.date} • <a className={classes.hc_me} href="">{recentPost.author} </a> </p>
 			</div>
-			<img className={classes.hc_img} src={recentPost.imgUrl} />
+			<img className={classes.hc_img} src={recentPost.imgURL} />
 		</Link>
 	);
 	

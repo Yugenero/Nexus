@@ -2,17 +2,13 @@ import anime from 'animejs/lib/anime.es.js';
 
 function animateImage() {
 	anime ({
-		targets: '.hc_recent_img',
-		rotate: 360,
-		translateY: 60,
-		scale: 2.2,
+		targets: '.hc_recent',
+		scale: 1.1,
 		
 	})
 } function resetAnimateImage() {
 	anime ({
-		targets: '.hc_recent_img',
-		rotate: 0,
-		translateY: 0,
+		targets: '.hc_recent',
 		scale: 1,
 	})
 }

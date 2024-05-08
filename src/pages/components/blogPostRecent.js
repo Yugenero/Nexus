@@ -5,6 +5,7 @@ const styles = makeStyles(() => ({
 	hc_container:{
 		display: 'flex',
 		flexDirection: 'row',
+		justifyContent: 'space-between',
 		width: '100%',
 		height: '80px',
 		textDecoration: 'none',
@@ -21,7 +22,7 @@ const styles = makeStyles(() => ({
 	hc_text_title: {
 		textAlign: 'left', // align text to the left of container
 		margin: '0',
-		fontSize: '0.6em',
+		fontSize: '0.55em',
 	},
 	hc_text_data: {
 		textAlign: 'left',
@@ -33,12 +34,12 @@ const styles = makeStyles(() => ({
 	},
 	hc_img: {
 		width: '80px',
-		height: '100%',
+		height: '80px',
 		borderRadius: '10%',
 		objectFit: 'cover',
-		margin: '0 ',
+		margin: '0',
 	},
-	hc_me : {	
+	hc_me: {	
 		fontWeight: 'bold',
 		color: 'var(--primary-color-light)',
 		fontWeight: 'normal',

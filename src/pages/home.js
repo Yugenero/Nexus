@@ -70,6 +70,7 @@ function Home() {
 	const recentPost3 = postList[postList.length - 4];
 
 	const cheer = new Audio('/sounds/cheer.mp3');
+	const boo = new Audio('/sounds/boo.mp3');
 	
 	return (
 		<div>
@@ -78,9 +79,10 @@ function Home() {
 				<div className="hc">
 
 				<Link className="hc_recent" href={`/p/${recentPost0.id}`}
+				onMouseEnter={animateImage}
+				onMouseLeave={resetAnimateImage}
 				style={{textDecoration: 'none'}}> 
 					<img className="hc_recent_img" src={recentPost0.imgURL} />
-					{console.log(recentPost0.imgURL)}
 					<div className="hc_recent_text">
 						<p className={classes.hc_text_title}> {recentPost0.title} </p>
 						<p className={classes.hc_text_excerpt}> {recentPost0.excerpt} </p>

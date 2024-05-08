@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
 
   return (
+
     <Router>
       
       <div className="App">
@@ -19,8 +20,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/p/:id" element={<BlogPost />} />
           </Routes> 
-        <body className="App-body">
-        </body>
       </div>
 
     </Router>

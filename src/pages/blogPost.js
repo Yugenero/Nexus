@@ -46,10 +46,10 @@ function BlogPost() {
 				<div className="post_header">
 					<p className="post_title">{post.title}</p>
 					<div className="post_subtitle">
-						<Link to={"https://substack.com/@nelsonrodriguez1?utm_source=user-menu"}>
+						<a href={"https://substack.com/@nelsonrodriguez1?utm_source=user-menu"}>
 							<img className="post_substack_link" 
 							src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff9bfdfbf-ac5c-4bb4-99f7-a616cc0ca0cb_2448x3264.png" />
-						</Link>
+						</a>
 						<div className="subtitle_info">
 							<p className="name">{post.author}</p>
 							<p className="date">{post.date}</p>
@@ -58,11 +58,11 @@ function BlogPost() {
 					</div>
 				</div>
 				<div className="post_break"></div>
-
+				
 				<article className="post_body">
 					<img className="post_img" src={post.imgURL} alt={post.title} />
-
-					<h2> paragraph title </h2>
+					{console.log(post.imgURL)}
+					<ReactMarkdown>{post.content}</ReactMarkdown>
 				</article>
 
 			</div>

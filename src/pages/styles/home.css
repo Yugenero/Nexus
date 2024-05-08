@@ -2,7 +2,6 @@ a {
 	text-decoration: none;
 	color: var(--primary-color);
 }
-
 /**
  * Home Page Styles
  */
@@ -38,14 +37,12 @@ a {
 } .hc_recent:hover {
 	cursor: pointer;
 }
-
 .hc_recent_img {
 	border-radius: 3%;
 	width: 50%;
 	height: 100%;
 	object-fit: cover;
 }
-
 .hc_recent_text {
 	display: flex;
 	flex-direction: column;	
@@ -100,29 +97,74 @@ a {
 .header_logo {
 	color: var(--secondary-color);
 	padding: 15px;
-	margin-left: 45px;
+	margin-left: 70px;
 	font-size: 1em;
 }
 .header_logo:hover {
 	cursor: pointer;
 }
 .header_nav {
-	margin-right: 45px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 18%;
+	margin-right: 70px;
+	padding: 15px;
 }
-.header_nav_item {
-	align-items: flex-start;
-	padding: 20px;
-	vertical-align: 5px;
-	border-radius: 20px;
-	color: var(--secondary-color);
-}
-.header_nav a:hover {
-	color: var(--background-color);
-	background-color: var(--secondary-color);
-}
+
 .header_link {
 	cursor: pointer;
 }
+
+.header_nav_item {
+	font-size: 0.7em;
+	display: inline-block;
+	position: relative;
+	color: var(--primary-color);
+	font-family: var(--font-family-text2);
+	font-weight: 500;
+} .header_nav_item:hover {
+	cursor: pointer;
+} 
+.header_nav_item::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-color: var(--accent-color-lightblue);
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+} .header_nav_item:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+	background-color: var(--accent-color-lightred);
+}
+
+
+/**
+ * Header Logo Animation
+ */
+.header_logo {
+	background: linear-gradient(to right, var(--accent-color-lightred), 
+				var(--accent-color-darkred),var(--accent-color-darkblue), 
+				var(--accent-color-lightblue));
+	animation: rainbow 1s ease-in-out infinite;
+	background-clip: text;
+	-webkit-background-clip:text;
+	transition: color .3s ease-in-out;
+ }.header_logo:hover {
+	color:rgba(0,0,0,0);
+}
+@keyframes rainbow { 
+	0%{background-position:left}
+	50%{background-position:right}
+	100%{background-position:left}
+}
+
+
 
 /**
  * Footer Styles
@@ -131,6 +173,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	padding: 2em 2em;
+	z-index: 1000;
 
 }.footer_logo {
 	user-select: none;
@@ -140,7 +183,9 @@ a {
 	padding: 0.5em 1em; /* Top bottom left right*/
 	color: var(--secondary-color);
 
-}.footer_logo_text {
+}
+
+.footer_logo_text {
 	user-select: none;
 	position: relative;
 	justify-content: flex-start;
@@ -158,4 +203,3 @@ a {
 	flex-direction: row;
 	justify-content: flex-end;
 }
-

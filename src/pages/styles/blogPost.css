@@ -7,7 +7,6 @@
 	color: var(--primary-color);
 	width: 100vw;
 	height: 100%;
-	padding-top: 90px;
 }
 
 .blog_post_container {
@@ -16,7 +15,8 @@
 	align-items: center;
 	width: 730px;
 	height: 100%;
-	margin: 0 auto;
+	margin-top: 90px;
+	margin-bottom: 20px;
 }
 
 .post_header {
@@ -79,7 +79,7 @@
 .post_img {
 	justify-content: center;
 	width: 100%;
-	height: inherit;
+	height: 475px;
 	margin: 20px 0;
 	object-fit: cover;
 }

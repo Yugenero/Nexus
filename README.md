@@ -1,4 +1,4 @@
-This is my personal blogging website and newsletter where I share my own opinions on Lifestyle, Tech, CS/Engineering, among many other things
+This is my personal blogging website and newsletter where I share my own opinions on Tech, CS/Engineering, among many other things
 
 Techstack {
 	React.js: Front-end

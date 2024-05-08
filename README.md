@@ -11,9 +11,6 @@ Libraries {
 	Anime.js: Animations
 }
 
-TODO: 
-migrate all pages to markdown
-
 In the project directory, you can run:
 
 ### `npm start`

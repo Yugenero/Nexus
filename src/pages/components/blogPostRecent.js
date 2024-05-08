@@ -1,12 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
-import posts from './blogPostData';
 import { Link } from 'react-router-dom';
 
 const styles = makeStyles(() => ({
 	hc_container:{
 		display: 'flex',
 		flexDirection: 'row',
+		justifyContent: 'space-between',
 		width: '100%',
+		height: '80px',
 		textDecoration: 'none',
 		'&:visited': {
 			color: 'var(--primary-color)',
@@ -21,7 +22,7 @@ const styles = makeStyles(() => ({
 	hc_text_title: {
 		textAlign: 'left', // align text to the left of container
 		margin: '0',
-		fontSize: '0.6em',
+		fontSize: '0.55em',
 	},
 	hc_text_data: {
 		textAlign: 'left',
@@ -33,12 +34,12 @@ const styles = makeStyles(() => ({
 	},
 	hc_img: {
 		width: '80px',
-		height: '100%',
+		height: '80px',
 		borderRadius: '10%',
 		objectFit: 'cover',
-		margin: '0 ',
+		margin: '0',
 	},
-	hc_me : {	
+	hc_me: {	
 		fontWeight: 'bold',
 		color: 'var(--primary-color-light)',
 		fontWeight: 'normal',
@@ -55,16 +56,14 @@ const styles = makeStyles(() => ({
 }));
 
 function BlogPostRecent({ recentPost }) {
-
 	const classes = styles();
-
 	return (
 		<Link className={classes.hc_container} to={`/p/${recentPost.id}`}>
 			<div className={classes.hc_container_text}>
 				<p className={classes.hc_text_title}> {recentPost.title} </p>
-				<p className={classes.hc_text_data}> {recentPost.shortDate} • <a className={classes.hc_me} href="">{recentPost.author} </a> </p>
+				<p className={classes.hc_text_data}> {recentPost.date} • <a className={classes.hc_me} href="">{recentPost.author} </a> </p>
 			</div>
-			<img className={classes.hc_img} src={recentPost.imgUrl} />
+			<img className={classes.hc_img} src={recentPost.imgURL} />
 		</Link>
 	);
 	

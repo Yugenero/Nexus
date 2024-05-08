@@ -18,9 +18,10 @@ const useStyles = makeStyles({
 		flexDirection: 'row',
 		position: 'static',
 		fontFamily: 'var(--font-family-text)',
-		width:'100vw', 
+		width: '100vw', 
 		backgroundColor: 'var(--background-color)',
 		justifyContent: 'space-between',
+		zIndex: '1000',
 	},
 	footerSocialButton: {
 		borderRadius: '10%',
@@ -73,17 +74,12 @@ function Footer() {
 		<AppBar className={classes.footer} position="static">
 			<Toolbar className={classes.footer}>
 				<div className="footer_logo_container">
-				<Typography className="footer_logo" variant="a">DevBlog </Typography>
-					<Typography className="footer_logo_text" variant="a"> © 2024 Nelson Rodriguez. All Rights Reserved.
+				<Typography className="footer_logo" variant="inherit"> Nexus </Typography>
+					<Typography className="footer_logo_text" variant="inherit"> A Dev Blog © 2024 Nelson Rodriguez
 				</Typography>
 				</div>
 				<div className="footer_socials_container">
 					<div className="footer_socials">
-						<IconButton className={classes.footerSocialButton}> 
-							<Link href="https://www.instagram.com/nero.yugen/" target="_blank" className={classes.socialLinkI}>
-								<InstagramIcon style={{fontSize: '1.1em'}} />
-							</Link>
-						</IconButton>
 						<IconButton className={classes.footerSocialButton}>
 							<Link href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" className={classes.socialLinkL}>
 								<LinkedInIcon style={{fontSize: '1.1em'}} />
@@ -92,6 +88,11 @@ function Footer() {
 						<IconButton className={classes.footerSocialButton}>
 							<Link href="mailto:neroxv1313@gmail.com" className={classes.socialLinkM}>
 								<EmailIcon style={{fontSize: '1.1em'}} />
+							</Link>
+						</IconButton>
+						<IconButton className={classes.footerSocialButton}> 
+							<Link href="https://www.instagram.com/nero.yugen/" target="_blank" className={classes.socialLinkI}>
+								<InstagramIcon style={{fontSize: '1.1em'}} />
 							</Link>
 						</IconButton>
 						<IconButton className={classes.footerSocialButton}>

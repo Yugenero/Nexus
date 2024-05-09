@@ -2,6 +2,7 @@ A personal blog and newsletter where I share my own opinions on Lifestyle, Tech,
 
 Techstack {
 	- React.js
+	- HTML/CSS
 	- Node.js/Express.js
 	- Google Sign-in/MongoDB
 }

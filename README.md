@@ -1,4 +1,4 @@
-This is my personal blogging website and newsletter where I share my own opinions on Lifestyle, Tech, CS/Engineering, among many other things
+A personal blog and newsletter where I share my own opinions on Lifestyle, Tech, CS/Engineering, among many other things
 
 Techstack {
 	React.js: Front-end
@@ -11,8 +11,6 @@ Libraries {
 	Anime.js: Animations
 }
 
-TODO: 
-migrate all pages to markdown
 
 In the project directory, you can run:
 

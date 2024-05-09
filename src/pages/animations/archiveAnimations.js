@@ -7,10 +7,30 @@ import anime from 'animejs/lib/anime.es.js';
 function blogNavPop() {
 	anime ({
 		targets: '.blog_nav_container',
-		translateX: ['-100%', '-70%'],
+		translateX: ['-100%', '20%'],
 		duration: 800,
 	});
 };
+
+function spanScale(event) {
+	anime({
+		targets: event.currentTarget.querySelector('.nav_topic'),
+		scale: 1.2,
+		translateX: 10,
+		duration: 200,
+		easing: 'easeInOutQuad',
+	})
+}
+
+function spanReset(event) {
+	anime({
+		targets: event.currentTarget.querySelector('.nav_topic'),
+		scale: 1,
+		translateX: 0,
+		duration: 200,
+		easing: 'easeInOutQuad',
+	})
+}
 
 /**
  * Blog Post List
@@ -43,5 +63,5 @@ function blogPostListScale(event) {
 	})
 }
 
-export { blogNavPop, blogPostListScale, blogPostListReset };
-export { blogListPop };
+export { blogNavPop, spanScale, spanReset }; 
+export { blogListPop, blogPostListScale, blogPostListReset };

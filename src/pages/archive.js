@@ -4,7 +4,7 @@ import Header from './components/header';
 import postList from "./data/posts.json";
 import Footer from "./components/footer";
 import { blogNavPop, blogPostListScale, blogPostListReset } from "./animations/archiveAnimations";
-import { blogListPop } from "./animations/archiveAnimations";
+import { blogListPop, spanScale, spanReset } from "./animations/archiveAnimations";
 import './styles/archive.css';
 
 /**
@@ -16,7 +16,7 @@ function BlogPostList({ posts, filterCategory }) {
 
 	useEffect(() => {
 		blogListPop();	
-	})
+	});
 
 	const filteredPosts = posts
 		.filter(post => filterCategory ? post.category === filterCategory : true)
@@ -32,12 +32,12 @@ function BlogPostList({ posts, filterCategory }) {
 					onMouseEnter={blogPostListScale}
 					onMouseLeave={blogPostListReset}>
 					{/**alt incase user cant see img */}
+					<img className="blog_post_list_link_img" src={post.imgURL} alt={post.title} /> 
 					<div className="blog_post_list_link_text">
 						<p className="bpl_title">{post.title}</p>
 						<p className="bpl_excerpt">{post.excerpt}</p>
 						<p className="bpl_footer">{post.date} • <span>{post.author}</span></p>
 					</div>
-					<img className="blog_post_list_link_img" src={post.imgURL} alt={post.title} /> 
 					
 				</Link>
 				<div className="line_break"></div>
@@ -53,7 +53,7 @@ function Archive() {
 	const [category, setCategory] = useState(null);
 
 	const navigateToAll = () => setCategory(null);
-	const navigateToCS = () => setCategory('CS');
+	const navigateToDev = () => setCategory('Dev');
 	const navigateToTech = () => setCategory('Tech');
 	const navigateToLifestyle= () => setCategory('Lifestyle');
 	const navigateToFitness = () => setCategory('Fitness');
@@ -69,16 +69,26 @@ function Archive() {
 			<div className="blog_nav_container">
 				<div className="blog_nav">
 	
-					<a className="blog_nav_topic" onClick={navigateToAll}>
+					<a className="blog_nav_topic" onClick={navigateToAll}
+						onMouseEnter={spanScale}
+						onMouseLeave={spanReset}>
 						<span className="nav_topic">All</span></a>
-					<a className="blog_nav_topic" onClick={navigateToCS}>
-						<span className="nav_topic">CS</span></a>
-					<a className="blog_nav_topic" onClick={navigateToTech}>
+					<a className="blog_nav_topic" onClick={navigateToDev}
+						onMouseEnter={spanScale}
+						onMouseLeave={spanReset}>
+						<span className="nav_topic">Dev</span></a>
+					<a className="blog_nav_topic" onClick={navigateToTech}
+						onMouseEnter={spanScale}
+						onMouseLeave={spanReset}>
 						<span className="nav_topic">Tech</span></a>
-					<a className="blog_nav_topic" onClick={navigateToLifestyle}>
-						<span className="nav_topic">Lifestyle</span></a>
-					<a className="blog_nav_topic" onClick={navigateToFitness}>
+					<a className="blog_nav_topic" onClick={navigateToFitness}
+						onMouseEnter={spanScale}
+						onMouseLeave={spanReset}>
 						<span className="nav_topic">Fitness</span></a>
+					<a className="blog_nav_topic" onClick={navigateToLifestyle}
+						onMouseEnter={spanScale}
+						onMouseLeave={spanReset}>
+						<span className="nav_topic">Lifestyle</span></a>
 				</div>
 			</div>
 			<div className="blogs_break"></div>

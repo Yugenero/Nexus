@@ -7,6 +7,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import postList from "./data/posts.json";
 import { animateImage, resetAnimateImage } from "./animations/homeAnimations";
+import { linkSlideIn } from "./animations/homeAnimations";
 import './styles/home.css';
 
 const styles = makeStyles(() => ({
@@ -26,7 +27,8 @@ const styles = makeStyles(() => ({
 		padding: '12px',
 		fontSize: '0.6em',
 		fontWeight: 'normal',
-		color: 'var(--primary-color-light)'
+		color: 'var(--primary-color-light)',
+		fontFamily: 'var(--font-family-design)',
 	},
 	hc_me : {	
 		fontWeight: 'bold',
@@ -71,6 +73,7 @@ function Home() {
 
 	const cheer = new Audio('/sounds/cheer.mp3');
 	const boo = new Audio('/sounds/boo.mp3');
+
 	
 	return (
 		<div>
@@ -78,7 +81,7 @@ function Home() {
 			<div className="home_ui_container">
 				<div className="hc">
 
-				<Link className="hc_recent" href={`/p/${recentPost0.id}`}
+				<Link className="hc_recent" onLoad={linkSlideIn} href={`/p/${recentPost0.id}`}
 				onMouseEnter={animateImage}
 				onMouseLeave={resetAnimateImage}
 				style={{textDecoration: 'none'}}> 

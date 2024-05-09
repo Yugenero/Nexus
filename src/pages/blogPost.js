@@ -54,9 +54,9 @@ function BlogPost() {
 							<p className="name">{post.author}</p>
 							<p className="date">{post.date}</p>
 						</div>
-
 					</div>
 				</div>
+
 				<div className="post_break"></div>
 				
 				<article className="post_body">
@@ -64,7 +64,6 @@ function BlogPost() {
 					{console.log(post.imgURL)}
 					<ReactMarkdown>{post.content}</ReactMarkdown>
 				</article>
-
 			</div>
 			<Footer/>
 

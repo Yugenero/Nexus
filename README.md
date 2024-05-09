@@ -1,4 +1,4 @@
-This is my personal blogging website and newsletter where I share my own opinions on Tech, CS/Engineering, among many other things
+A personal blog and newsletter where I share my own opinions on Lifestyle, Tech, CS/Engineering, among many other things
 
 Techstack {
 	React.js: Front-end
@@ -10,6 +10,7 @@ Libraries {
 	Material UI: Front-end components
 	Anime.js: Animations
 }
+
 
 In the project directory, you can run:
 

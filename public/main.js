@@ -57,8 +57,8 @@ const getPosts = () =>  {
 					title: metaData.title ? metaData.title : "No title",
 					imgURL: metaData.imgURL ? metaData.imgURL : "No image",
 					category: metaData.category ? metaData.category : "No category",
-					excerpt: metaData.excerpt ? metaData.excerpt : "No excerpt",
-					content: content ? content: "No content given",
+					excerpt: metaData.excerpt ? metaData.excerpt : (content ? content.substring(0, 60) + "..." : "No content"),
+					content: content ? content: "No content",
 				}
 
 				postList.push(post);

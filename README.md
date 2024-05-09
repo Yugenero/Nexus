@@ -7,8 +7,8 @@ Techstack {
 }
 
 Libraries {
-	Material UI
-	Anime.js
+	- Material UI
+	- Anime.js
 }
 
 

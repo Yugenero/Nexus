@@ -1,14 +1,15 @@
 A personal blog and newsletter where I share my own opinions on Lifestyle, Tech, CS/Engineering, among many other things
 
 Techstack {
-	React.js: Front-end
-	Node.js/Express.js: Server-side
-	Google Sign-in/MongoDB: No SQL Database for user authentication
+	- React.js
+	- HTML/CSS
+	- Node.js/Express.js
+	- Google Sign-in/MongoDB
 }
 
 Libraries {
-	Material UI: Front-end components
-	Anime.js: Animations
+	- Material UI
+	- Anime.js
 }
 
 

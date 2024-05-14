@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
-import anime from 'animejs/lib/anime.es.js';
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
 import { Box } from '@material-ui/core';
-import { nexusMouseOver, nexusMouseOff } from "./animations/registrationAnimations";
+import { nexusMouseOver, nexusMouseOff, loading } from "./animations/registrationAnimations";
 import axios from 'axios';
 import './styles/register.css';
 
-const clientID = "1003989541364-doeegiq0q8s8q56heqj862ipmfqtqlhn.apps.googleusercontent.com";
-
-function RegistrationField(onUsernameChange, onEmailChange, onPasswordChange) {
+function RegistrationField({onUsernameChange, onEmailChange, onPasswordChange}) {
 	return(
 		<Box
 			component="form"
@@ -21,19 +19,19 @@ function RegistrationField(onUsernameChange, onEmailChange, onPasswordChange) {
 			autoComplete="off">
 			
 			<Box mb={2} >
-			<TextField id="registration_text_field" label="Username" variant="outlined"
+			<TextField className="registration_text_field" label="Username" variant="outlined"
 				style={{width: '400px'}}
-				onSubmit={(event) => onUsernameChange(event.target.value)} 
+				onChange={(event) => onUsernameChange(event.target.value)} 
 				color="secondary"/>
 			</Box> <Box mb={2}>
-			<TextField id="registration_text_field" label="Email" variant="outlined" 
+			<TextField className="registration_text_field" label="Email" variant="outlined" 
 				style={{width: '400px'}}
-				onSubmit={(event) => onEmailChange(event.target.value)} 
+				onChange={(event) => onEmailChange(event.target.value)} 
 				color="secondary"/>
 			</Box> <Box mb={2}>
-			<TextField id="registration_text_field" label="Password" variant="outlined" 
+			<TextField className="registration_text_field" label="Password" variant="outlined" 
 				style={{width: '400px'}}
-				onSubmit={(event) => onPasswordChange(event.target.value)}
+				onChange={(event) => onPasswordChange(event.target.value)}
 				color="secondary" />
 			</Box>
     	</Box>
@@ -47,12 +45,25 @@ function Register() {
 	const [password, setPassword] = useState('');
 
 	// event handler for the form submission
+	/**
+	 * Connect to server (server.js) register a new user
+	 * @param {event} event 
+	 */
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		axios.post('http://localhost:3000/users', {username, email, password})
-		.then(result => console.log(result))
-		.catch(error => console.log(error))
-	}; 
+
+		axios.post('http://localhost:3000/users', {
+			username: username,
+			email: email,
+			password: password
+		})
+		.then(response => {
+			console.log(response);
+		})
+		.catch(error => {
+			console.error('Error creating user: ', error);
+		});
+	}
 
 	// navigation routes
 	const navigate = useNavigate();
@@ -63,6 +74,7 @@ function Register() {
 	useEffect(() => {
         const registrationVisual = document.querySelector('.registration_visual');
 		const nexus_text = document.querySelector('.nexus_text');
+		const textField = document.querySelector('.registration_text_field');
 		const originalColor = getComputedStyle(registrationVisual).backgroundColor;
 
         document.querySelector('.nexus').addEventListener('mouseenter', () => {
@@ -72,6 +84,10 @@ function Register() {
         document.querySelector('.nexus').addEventListener('mouseleave', () => {
             nexusMouseOff(registrationVisual, nexus_text, originalColor);
         });
+
+		textField.addEventListener('focus', () => {
+			nexusMouseOver(registrationVisual, nexus_text);
+		})
 
     }, []);
 
@@ -90,16 +106,22 @@ function Register() {
 		</div>
 		<div className="registration_elements">
 			<div className="registration_form_container">
+				
+				{/** registration request */}
 				<p className="form_container_text"> Sign In </p>
-				<RegistrationField 
-					onUsernameChange={setUsername}
-					onEmailChange={setEmail}
-					onPasswordChange={setPassword}
-					/>
-				<Button variant="outlined" 
-					onClick={handleSubmit}>
-					Create An Account
-				</Button>
+					<RegistrationField 
+						onUsernameChange={setUsername}
+						onEmailChange={setEmail}
+						onPasswordChange={setPassword}
+						/>
+					<Button type="submit" variant="outlined" onClick={handleSubmit}>
+						Create An Account
+					</Button>
+
+					<div className="loading">hi</div>
+
+
+				{/** buttons */}
 				<Box mt={1}>
 					<Button 
 						variant="outlined" 
@@ -110,10 +132,18 @@ function Register() {
 						Back
 					</Button> 
 				</Box>
+
+				<Link className="login" to={'/login'}> 
+					Or click here to Log In 
+				</Link>
 			</div>
 		</div>
 		</div>
+
+
 	);
 }
+
+// finding out the nature of the universe
 
 export default Register;

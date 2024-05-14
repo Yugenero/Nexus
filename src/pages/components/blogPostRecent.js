@@ -33,7 +33,7 @@ const styles = makeStyles(() => ({
 		fontSize: '0.4em',
 		fontWeight: 'normal',
 		color: 'var(--primary-color-light)',
-		fontFamily: 'var(--font-family-design)',
+		fontFamily: 'var(--font-family-text)',
 	},
 	hc_img: {
 		width: '80px',
@@ -69,7 +69,7 @@ function BlogPostRecent({ recentPost }) {
             onMouseLeave={() => resetRecent(`#${id}`)}>
             <div className={classes.hc_container_text}>
                 <p className={classes.hc_text_title}> {recentPost.title} </p>
-                <p className={classes.hc_text_data}> {recentPost.date} • <a className={classes.hc_me} href="">{recentPost.author} </a> </p>
+                <p className={classes.hc_text_data}> {recentPost.date} • <span className={classes.hc_me} href="">{recentPost.author} </span> </p>
             </div>
             <img className={classes.hc_img} src={recentPost.imgURL} />
         </Link>

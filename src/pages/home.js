@@ -28,7 +28,7 @@ const styles = makeStyles(() => ({
 		fontSize: '0.6em',
 		fontWeight: 'normal',
 		color: 'var(--primary-color-light)',
-		fontFamily: 'var(--font-family-design)',
+		fontFamily: 'var(--font-family-text)',
 	},
 	hc_me : {	
 		fontWeight: 'bold',
@@ -70,10 +70,6 @@ function Home() {
 	const recentPost1 = postList[postList.length - 2];
 	const recentPost2 = postList[postList.length - 3];
 	const recentPost3 = postList[postList.length - 4];
-
-	const cheer = new Audio('/sounds/cheer.mp3');
-	const boo = new Audio('/sounds/boo.mp3');
-
 	
 	return (
 		<div>
@@ -89,7 +85,7 @@ function Home() {
 					<div className="hc_recent_text">
 						<p className={classes.hc_text_title}> {recentPost0.title} </p>
 						<p className={classes.hc_text_excerpt}> {recentPost0.excerpt} </p>
-						<p className={classes.hc_text_data}> {recentPost0.date} • <a className={classes.hc_me} href=""> {recentPost0.author} </a> </p>
+						<p className={classes.hc_text_data}> {recentPost0.date} • <span className={classes.hc_me} href=""> {recentPost0.author} </span> </p>
 					</div>
 				</Link>
 

@@ -11,7 +11,7 @@ a {
 	justify-content: center;
 	align-items: center;
 	font-weight: bold;
-	font-family: var(--font-family-text);
+	font-family: var(--font-family-design);
 	color: var(--primary-color);
 	width: 100vw;
 	height: 100vh; /** Default value: calculate the height of the content */
@@ -52,7 +52,6 @@ a {
 	margin: 0;
 	padding: 0 20px;
 	width: 50%;
-	font-family: var(--font-family-design);
 } .hc_recent_container {
 	display: flex;
 	flex-direction: column;

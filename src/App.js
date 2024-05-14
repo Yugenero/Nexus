@@ -5,6 +5,7 @@ import Archive from './pages/archive.js';
 import About from './pages/about.js';
 import BlogPost from './pages/blogPost.js'; 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './pages/login.js';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/archive" element={<Archive />} />
             <Route path="/about" element={<About />} />
             <Route path="/p/:id" element={<BlogPost />} />

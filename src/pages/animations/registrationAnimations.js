@@ -30,5 +30,15 @@ function nexusMouseOff(registrationVisual, nexus_text, originalColor) {
 	});
 }
 
-export { nexusMouseOver, nexusMouseOff };
+
+function loading() {
+	anime({
+	  targets: '.loading',
+	  rotate: '1turn',
+	  loop: true,
+	  easing: 'linear',
+	});
+  }
+
+export { nexusMouseOver, nexusMouseOff, loading };
 

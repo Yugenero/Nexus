@@ -1,4 +1,3 @@
-// I am genuinely suicidal
 
 /**
  * This is a simple server that listens for POST requests to create a new user.
@@ -34,9 +33,8 @@ app.use(express.json());
 
 // POST endpoint for creating a new user
 app.post('/users', async(request, response) => {
-  console.log(request.url);
   try {
-    const hashedPassword = await bcrypt.hash(request.body.password, 20);
+    const hashedPassword = await bcrypt.hash(request.body.password, 10);
     const newUser = new User({
       username: request.body.username,
       email: request.body.email,
@@ -46,12 +44,25 @@ app.post('/users', async(request, response) => {
     await newUser.save();
     console.log('New User: ' + newUser.username + ' created succesfully' +
                 ' and entered into mongoDB');
+
+    response.status(201).json('User created successfully');
   } catch (error) {
     response.status(400).json('User save error: ' + error);
   }
 })
 
 // POST endpoint for logging in a user
+app.get('/login', async(request, response) => {
+  try {
+    if (request.body.username === User.username) {
+      response.status(200).json('User logged in successfully');
+    }
+  } catch {
+    response.status(400).json('User was not found in the database');
+  }
+})
+
+
 // POST endpoint for deleting a user 
 
 // Start the server

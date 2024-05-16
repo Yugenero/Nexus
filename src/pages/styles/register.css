@@ -110,12 +110,12 @@
 }
 
 .login {
-	font-size: 0.6em;
+	font-size: 0.5em;
 	color: var(--primary-color);
 	font-family: var(--font-family-text);
 	margin-top: 8px
 } .login:hover {
-	font-style: italic;
+	text-decoration: underline;
 } 
 
 .loading {

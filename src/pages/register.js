@@ -38,11 +38,17 @@ function RegistrationField({onUsernameChange, onEmailChange, onPasswordChange}) 
 	)
 }
 
-function Register() {
+function Register(props) {
 
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
+	// navigation routes
+	const navigate = useNavigate();
+	const goBack = () => {
+		navigate('/');
+	};
 
 	// event handler for the form submission
 	/**
@@ -51,25 +57,22 @@ function Register() {
 	 */
 	const handleSubmit = (event) => {
 		event.preventDefault();
-
 		axios.post('http://localhost:3000/users', {
 			username: username,
 			email: email,
 			password: password
 		})
 		.then(response => {
-			console.log(response);
+			if (response.data === 'User created successfully') {
+				navigate('/login');
+			}
 		})
 		.catch(error => {
 			console.error('Error creating user: ', error);
 		});
 	}
 
-	// navigation routes
-	const navigate = useNavigate();
-	const goBack = () => {
-		navigate('/');
-	};
+
 
 	useEffect(() => {
         const registrationVisual = document.querySelector('.registration_visual');
@@ -114,19 +117,18 @@ function Register() {
 						onEmailChange={setEmail}
 						onPasswordChange={setPassword}
 						/>
-					<Button type="submit" variant="outlined" onClick={handleSubmit}>
+					<Button 
+					style={{color: 'var(--accent-color-darkblue)'}}
+					type="submit" variant="outlined" onClick={handleSubmit}>
 						Create An Account
 					</Button>
-
-					<div className="loading">hi</div>
-
 
 				{/** buttons */}
 				<Box mt={1}>
 					<Button 
 						variant="outlined" 
 						className="back_button"
-						style={{width: '400px'}}
+						style={{width: '400px', color: 'var(--accent-color-darkred)'}}
 						onClick={goBack}
 						>
 						Back

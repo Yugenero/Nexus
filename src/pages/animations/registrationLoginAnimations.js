@@ -1,5 +1,9 @@
 import anime from 'animejs';
 
+
+/**
+ * Registration animations
+ */
 function nexusMouseOver(registrationVisual, nexus_text) {
 	anime({
 		targets: registrationVisual,
@@ -30,15 +34,27 @@ function nexusMouseOff(registrationVisual, nexus_text, originalColor) {
 	});
 }
 
+/**
+ * Login animations
+ */
 
-function loading() {
+function loginLoadingAnimation() {
 	anime({
-	  targets: '.loading',
-	  rotate: '1turn',
-	  loop: true,
-	  easing: 'linear',
-	});
-  }
+		targets: '.login_loading',
+		rotate: '1turn',
+		loop: true,
+		easing: 'linear',
+		duration: 1000
+	})
+}
 
-export { nexusMouseOver, nexusMouseOff, loading };
+function registrationLoadingAnimation() {
+	anime({
+		targets: '.registration_loading',
+	})
+}
+
+export { nexusMouseOver, nexusMouseOff, registrationLoadingAnimation };
+export { loginLoadingAnimation }
+
 

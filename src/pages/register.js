@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
 import { Box } from '@material-ui/core';
-import { nexusMouseOver, nexusMouseOff, loading } from "./animations/registrationAnimations";
+import { nexusMouseOver, nexusMouseOff } from "./animations/registrationLoginAnimations";
 import axios from 'axios';
 import './styles/register.css';
 
@@ -57,14 +57,28 @@ function Register(props) {
 	 */
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		axios.post('http://localhost:3000/users', {
+
+		// connect to server (server.js) to register a user
+		if (!username || !email || !password) {
+			console.error('Missing username, or password');
+			return;
+		}
+		if (username.length > 15 || username.length < 3) {
+			console.error('Username must be between 3 and 15 characters');
+			return;
+		}
+
+		axios.post('http://localhost:3000/register', {
 			username: username,
 			email: email,
 			password: password
 		})
 		.then(response => {
 			if (response.data === 'User created successfully') {
+				console.log('User ' + username + ' created successfully');
 				navigate('/login');
+			} else if (response.status === 400) {
+				console.error('Missing username or password');
 			}
 		})
 		.catch(error => {
@@ -72,7 +86,7 @@ function Register(props) {
 		});
 	}
 
-
+	// this interesting code is going to be uninteresting soon
 
 	useEffect(() => {
         const registrationVisual = document.querySelector('.registration_visual');
@@ -83,15 +97,12 @@ function Register(props) {
         document.querySelector('.nexus').addEventListener('mouseenter', () => {
             nexusMouseOver(registrationVisual, nexus_text);
         });
-
         document.querySelector('.nexus').addEventListener('mouseleave', () => {
             nexusMouseOff(registrationVisual, nexus_text, originalColor);
         });
-
 		textField.addEventListener('focus', () => {
 			nexusMouseOver(registrationVisual, nexus_text);
 		})
-
     }, []);
 
 	return (

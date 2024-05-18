@@ -1,8 +1,8 @@
-.login_container {
+.login_ui {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	height: 100vh;
+	width: 100vw;
 }
 
 .form_submission_container {
@@ -12,7 +12,19 @@
 	align-items: center;
 }
 
-.login_field {
-	margin: 10px;
-	color: var(--accent-color-darkred);
+.title {
+	align-items: center;
+	justify-content: center;
+	border-bottom: 1px solid var(--break-color);
+	margin-bottom: 1em;
+	font-size: 0.5em;
+	color: var(--primary-color);
+}
+
+
+.login_loading {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
 }

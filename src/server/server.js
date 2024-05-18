@@ -32,7 +32,7 @@ app.use(cors());
 app.use(express.json());
 
 // POST endpoint for creating a new user
-app.post('/users', async(request, response) => {
+app.post('/register', async(request, response) => {
   try {
     const hashedPassword = await bcrypt.hash(request.body.password, 10);
     const newUser = new User({
@@ -41,32 +41,67 @@ app.post('/users', async(request, response) => {
       password: hashedPassword,
     });
 
-    await newUser.save();
-    console.log('New User: ' + newUser.username + ' created succesfully' +
-                ' and entered into mongoDB');
+    if (newUser.username === null || newUser.email === null || newUser.password === null
+        || newUser.username === '' || newUser.email === '' || newUser.password === '') {
+        return response.status(400).json("Missing username, email, or password");
+    } else if (newUser.username.length > 15 || newUser.username.length < 3) {
+        return response.status(400).json("Username must between 3 and 15 characters");
+    }
 
+    await newUser.save();
+    // server side console.log will go to the terminal
+    console.log('New User: ' + newUser.username + ' created succesfully' +
+                  ' and entered into database');
     response.status(201).json('User created successfully');
+
   } catch (error) {
-    response.status(400).json('User save error: ' + error);
+    response.status(400).json('User registration error: ' + error);
   }
 })
 
 // POST endpoint for logging in a user
-app.get('/login', async(request, response) => {
+app.post('/login', async(request, response) => {
+
   try {
-    if (request.body.username === User.username) {
-      response.status(200).json('User logged in successfully');
+    const user = await User.findOne({username: request.body.username})
+    if (!user || user.username != request.body.username) {
+      console.log(request.body.username + ' was not found in the database')
+      return response.status(400).json('Cannot find user'); 
     }
-  } catch {
+
+    // if user exists in the database
+    const match = await bcrypt.compare(request.body.password, user.password);
+
+    if (match) {
+      // server side console.log will go to the terminal
+      console.log(user.username + ' logged into the database');
+      return response.status(200).json('User was found');
+    }
+    console.log('Password is incorrect')
+    return response.status(400).json('Invalid Password');
+
+  } catch (error) {
+    console.log('User login error: ' + error);
     response.status(400).json('User was not found in the database');
   }
 })
 
 
 // POST endpoint for deleting a user 
+app.post('/delete', async(request, response) => {
+  
+  const user = await User.findOne({username: request.body.username});
+  
+  // adding return will stop function propagation
+  if (!user) {
+    return response.status(400).json('User not found');
+  } else {
+    await User.deleteOne({username: request.body.username});
+  } 
+})
 
 // Start the server
-app.listen(port, (error) => {
+app.listen(port, (error) => { 
   if (error) {
     console.log('App.listen Error:' + error);
   }

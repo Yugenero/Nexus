@@ -8,6 +8,8 @@ import Footer from "./components/footer";
 import postList from "./data/posts.json";
 import { animateImage, resetAnimateImage } from "./animations/homeAnimations";
 import { linkSlideIn } from "./animations/homeAnimations";
+import { useLocation } from "react-router-dom";
+import { LoginPopover } from "./components/popOvers"; 
 import './styles/home.css';
 
 const styles = makeStyles(() => ({
@@ -70,7 +72,21 @@ function Home() {
 	const recentPost1 = postList[postList.length - 2];
 	const recentPost2 = postList[postList.length - 3];
 	const recentPost3 = postList[postList.length - 4];
-	
+
+	const location = useLocation();
+	const loggedIn = location.state?.loggedIn;
+	const [open, setOpen] = useState(false);
+	// handle close for login popup
+	const handleCloseLogin = () => {
+		setOpen(false);
+	}
+
+	useEffect(() => {
+		if (location.state?.loggedIn) {
+			setOpen(true);
+		}
+	}, [location.state?.loggedIn]);
+
 	return (
 		<div>
 			<Header/>
@@ -90,6 +106,7 @@ function Home() {
 				</Link>
 
 				<div className={classes.break}> </div>
+				<LoginPopover open={open} handleClose={handleCloseLogin} />
 
 				<div className="hc_recent_container">
 					<div className="hc_recent_title">

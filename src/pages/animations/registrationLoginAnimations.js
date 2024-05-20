@@ -40,11 +40,21 @@ function nexusMouseOff(registrationVisual, nexus_text, originalColor) {
 
 function loginLoadingAnimation() {
 	anime({
-		targets: '.login_loading',
-		rotate: '1turn',
+	  targets: '.login_loading',
+      scale: [1, 1.3], // Scale up to 120% then back to 100%
+	  rotate: 360, // Rotate a full 360 degrees
+      duration: 2000, // Half a second for each pulse
+      direction: 'alternate',
+      loop: true, // Keep repeating the animation
+      easing: 'easeInOutSine' 
+	})
+	anime({
+		targets: '.login_loading_2',
+		rotate: 360,
+		duration: 1000,
 		loop: true,
-		easing: 'linear',
-		duration: 1000
+		easing: 'easeInOutSine',
+		endDelay: 1000
 	})
 }
 

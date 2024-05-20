@@ -14,7 +14,7 @@ function LoginField() {
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
-
+	const [loggedIn, setLoggedIn] = useState(false);
 	const navigate = useNavigate();
 
 	/**
@@ -34,7 +34,7 @@ function LoginField() {
 		.then(response => {
 			if (response.status === 200) {
 				console.log('User'  + username + ' deleted successfully');
-				navigate('/')
+				navigate('/');
 			}
 		})
 		.catch(error => {
@@ -45,17 +45,16 @@ function LoginField() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		// run animation
-		setIsLoading(true);
-
 		// connect to server (server.js) to login a user
 		if (!username || !password) {
 			console.error('Missing username or password');
 			return;
 		} 
-		if (username.length > 15 || username.length < 3) {
+		else if (username.length > 15 || username.length < 3) {
 			console.error('Username must be between 3 and 15 characters');
 			return;
+		} else {
+			setIsLoading(true);
 		}
 		axios.post('http://localhost:3000/login', {
 			username: username,
@@ -65,13 +64,13 @@ function LoginField() {
 			if (response.status === 200) {
 				console.log(username + ' has been logged in')
 				setIsLoading(false);
-				navigate('/');
+				navigate('/', {state: {loggedIn: true}});
 			} 
  			if (response.status === 400) console.error('Invalid username or password');
 		})
 		.catch(error => {
 			setIsLoading(false);
-			console.log('Error finding user: ', error);
+			return console.log('Error finding user: ', error);
 		});
 	}
 
@@ -93,6 +92,7 @@ function LoginField() {
 					<Box mb={1}>						
 					<TextField className="login_field" variant='outlined' 
 					style={{color: 'var(--accent-color-darkred)', width: '400px'}}
+					color='secondary'
 					onChange={(event => setUsername(event.target.value))}
 					label="Username"/>
 					</Box>
@@ -100,6 +100,7 @@ function LoginField() {
 					<Box mb={1}> 
 					<TextField className="login_field" variant='outlined' 
 					style={{color: 'var(--accent-color-darkred)', width: '400px'}}
+					color='secondary'
 					onChange={(event => setEmail(event.target.value))}
 					label="Email"/>
 					</Box>
@@ -107,12 +108,16 @@ function LoginField() {
 					<Box mb={1}>
 					<TextField className="login_field" variant='outlined' 
 					style={{color: 'var(--accent-color-darkred)', width: '400px'}}
+					color='secondary'
 					onChange={(event => setPassword(event.target.value))}
 					label="Password"/>
 					</Box>
 
-					<Button onClick={handleSubmit}> Login </Button>
-					{isLoading && <div className='login_loading'></div>}
+					<Button onClick={handleSubmit} variant='outlined'
+					style={{width: '400px'}}> Login </Button>
+					{ isLoading && <div className='login_loading'>
+						<div className='login_loading_2'></div>
+					</div> }
 			</Box>
 	)	
 };

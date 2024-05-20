@@ -15,16 +15,25 @@
 .title {
 	align-items: center;
 	justify-content: center;
-	border-bottom: 1px solid var(--break-color);
-	margin-bottom: 1em;
-	font-size: 0.5em;
+	font-size: 0.6em;
 	color: var(--primary-color);
+	border: 1px solid var(--break-color);
+	font-family: var(--font-family-design);
 }
 
 
 .login_loading {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20%;
+	width: 30px;
+	height: 30px;
+	border: 1px solid var(--accent-color-darkblue);
+	margin-top: 30px;
+} .login_loading_2 {
+	border-radius: 20%;
+	width: 10px;
+	height: 10px;
+	border: 1px solid var(--accent-color-darkred);
 }

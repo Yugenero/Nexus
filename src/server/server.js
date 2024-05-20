@@ -9,8 +9,11 @@ const express = require('express'); // listen for POST requests
 const mongoose = require('mongoose'); // connect to MongoDB
 const cors = require('cors'); // allow cross-origin requests
 const bcrypt = require('bcrypt'); // hash passwords
+const WebSocket = require('ws'); // create a WebSocket server
+const http = require('http'); // create an HTTP server
 const app = express(); // create an Express app
 const port = 3000;
+
 
 // Connect to MongoDB Atlas
 mongoose.connect('mongodb+srv://neroxv1313:Snowfuzzyugen13-@mydb.vv5dhyk.mongodb.net/usersDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -30,6 +33,10 @@ const User = mongoose.model('User', userSchema);
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// websocket connection
+
+
 
 // POST endpoint for creating a new user
 app.post('/register', async(request, response) => {
@@ -99,6 +106,8 @@ app.post('/delete', async(request, response) => {
     await User.deleteOne({username: request.body.username});
   } 
 })
+
+app.use(express.static('public'));
 
 // Start the server
 app.listen(port, (error) => { 

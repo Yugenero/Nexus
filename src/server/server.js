@@ -11,9 +11,15 @@ const cors = require('cors'); // allow cross-origin requests
 const bcrypt = require('bcrypt'); // hash passwords
 const WebSocket = require('ws'); // create a WebSocket server
 const http = require('http'); // create an HTTP server
+const path = require('path'); // Required to resolve paths
 const app = express(); // create an Express app
+const morgan = require('morgan'); // log requests to the console
 const port = 3000;
 
+
+const server = http.createServer(app); // create an HTTP server
+// Create a WebSocket server
+const wss = new WebSocket.Server({ server: server, path: '/ws' });
 
 // Connect to MongoDB Atlas
 mongoose.connect('mongodb+srv://neroxv1313:Snowfuzzyugen13-@mydb.vv5dhyk.mongodb.net/usersDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -33,10 +39,23 @@ const User = mongoose.model('User', userSchema);
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(morgan('dev')); // log requests to the console for debugging purposes
 
-// websocket connection
+app.use(express.static(path.join(__dirname, '..', '..', 'build')));
 
+// Middleware to log requests to the console for images (for debugging purposes)
+app.use('/images', (req, res, next) => {
+  console.log(`Static file request for: ${req.path}`);
+  next();
+});
 
+// websocket connection (for real-time user interaction not necessary for this project)
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+  ws.send('ws server connected');
+});
 
 // POST endpoint for creating a new user
 app.post('/register', async(request, response) => {
@@ -82,14 +101,15 @@ app.post('/login', async(request, response) => {
     if (match) {
       // server side console.log will go to the terminal
       console.log(user.username + ' logged into the database');
+      console.log('User session information: ');
       return response.status(200).json('User was found');
     }
-    console.log('Password is incorrect')
-    return response.status(400).json('Invalid Password');
+    console.log('Password is incorrect');
+    response.status(201).json('Invalid Password');
 
   } catch (error) {
     console.log('User login error: ' + error);
-    response.status(400).json('User was not found in the database');
+    return response.status(400).json('User was not found in the database');
   }
 })
 
@@ -107,7 +127,12 @@ app.post('/delete', async(request, response) => {
   } 
 })
 
-app.use(express.static('public'));
+// GET endpoint for getting all users
+app.get('*', (req, res) => {
+  console.log(`Serving index.html for route: ${req.path}`);
+  res.sendFile(path.join(__dirname, '..', '..', 'build', 'index.html'));
+});
+
 
 // Start the server
 app.listen(port, (error) => { 

@@ -1,27 +1,89 @@
 import React from "react";
-import { Popover } from "@material-ui/core";
+import { Popover, colors } from "@material-ui/core";
 import {Typography} from "@material-ui/core";
+import {Box} from "@material-ui/core";
+import { createTheme } from '@material-ui/core/styles';
+
+const theme = createTheme({
+	palette: {
+	  accent: {
+		darkred: '#8b0000', // replace with your actual color
+	  },
+	},
+  });
 
 function LoginPopover({open, handleClose}) {
-	const anchorEl = open? document.body: null;	
-
+	const anchorEl = open ? document.body: null;	
 	return(
 		<Popover
-			open={open}
+			open={open} // if true open the popover
 			anchorEl={anchorEl}
-			onClose={handleClose}
+			onClose={handleClose} // set open to false
 			anchorOrigin={{
-				vertical: 'bottom',
+				vertical: 'top',
 				horizontal: 'center',
 			}}
 			transformOrigin={{
 				vertical: 'top',
 				horizontal: 'center',
 			}}
-			style={{width: '200px', fontFamily: 'var(--font-family-design)'}}>
-      		<Typography>The user has been successfully logged in.</Typography>
+			elevation={1}
+			>
+      		<Box sx={{ p: 2, bgcolor: 'accent.darkred' }}> 
+				<Typography style={{fontFamily: 'var(--font-family-gt)'}}>Log in successful</Typography>
+  			</Box>
     	</Popover>
 	);
 };
 
-export { LoginPopover }; 
+function LoginFailedPop({open, handleClose, errorMessage}) {
+	const anchorEl = open? document.body: null;	
+
+	return (
+		<Popover
+			open={open}
+			anchorEl={anchorEl}
+			onClose={handleClose}
+			anchorOrigin={{
+				vertical: 'top',
+				horizontal: 'center',
+			}}
+			transformOrigin={{
+				vertical: 'top',
+				horizontal: 'center',
+			}}
+			elevation={1}
+			>
+      		<Box sx={{ p: 2, bgcolor: 'accent.darkred' }}> 
+				<Typography style={{fontFamily: 'var(--font-family-gt)'}}>{errorMessage}</Typography>
+  			</Box>
+    	</Popover>
+	)
+}
+
+function RegistrationFailedPop({open, handleClose}) {
+	const anchorEl = open? document.body: null;	
+
+	return (
+		<Popover
+			open={open}
+			anchorEl={anchorEl}
+			onClose={handleClose}
+			anchorOrigin={{
+				vertical: 'top',
+				horizontal: 'center',
+			}}
+			transformOrigin={{
+				vertical: 'top',
+				horizontal: 'center',
+			}}
+			elevation={1}>
+			<Box sx={{ p: 2, bgcolor: 'accent.darkred', color: 'secondary'}}> 
+				<Typography style={{fontFamily: 'var(--font-family-gt)'}}>Missing username or password</Typography>
+			</Box>
+		</Popover>
+	)
+}
+
+
+export { LoginPopover, RegistrationFailedPop, LoginFailedPop }; 

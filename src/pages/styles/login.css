@@ -37,3 +37,48 @@
 	height: 10px;
 	border: 1px solid var(--accent-color-darkred);
 }
+
+.title_nexus {
+	margin: 0;
+	background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-darkred), var(--accent-color-darkblue), var(--accent-color-lightblue));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: var(--font-family-design);
+    font-size: 3em;
+	font-weight: 100;
+} .register {
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-darkred), var(--accent-color-darkblue), var(--accent-color-lightblue));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: var(--font-family-design);
+	font-weight: 100;
+} .register:hover {
+	cursor: pointer;
+} 
+.register::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-color: var(--accent-color-lightblue);
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+} .register:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+	background-color: var(--accent-color-lightred);
+}
+
+.act {
+	font-size: 0.5em;
+}

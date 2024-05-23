@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Link, IconButton } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import BlogPostRecent from "./components/blogPostRecent";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -73,19 +74,20 @@ function Home() {
 	const recentPost2 = postList[postList.length - 3];
 	const recentPost3 = postList[postList.length - 4];
 
+	// login pop-over on successful navigate
 	const location = useLocation();
 	const loggedIn = location.state?.loggedIn;
 	const [open, setOpen] = useState(false);
+
 	// handle close for login popup
 	const handleCloseLogin = () => {
 		setOpen(false);
 	}
-
 	useEffect(() => {
-		if (location.state?.loggedIn) {
+		if (loggedIn) {
 			setOpen(true);
 		}
-	}, [location.state?.loggedIn]);
+	}, []);
 
 	return (
 		<div>
@@ -93,7 +95,8 @@ function Home() {
 			<div className="home_ui_container">
 				<div className="hc">
 
-				<Link className="hc_recent" onLoad={linkSlideIn} href={`/p/${recentPost0.id}`}
+				
+				<Link className="hc_recent" onLoad={linkSlideIn} to={`/p/${recentPost0.id}`}
 				onMouseEnter={animateImage}
 				onMouseLeave={resetAnimateImage}
 				style={{textDecoration: 'none'}}> 

@@ -5,6 +5,9 @@ import Header from "./components/header";
 import './styles/blogPost.css';
 import postList from "./data/posts.json";
 import ReactMarkdown from "react-markdown";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { IconButton } from "@material-ui/core";
+import { heartScale } from "./animations/blogPostAnimations";
 import anime from "animejs";
 
 /**
@@ -18,8 +21,10 @@ function BlogPost() {
 	const { id } = useParams();
 	const [post, setPost] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [isClick, setClick] = useState(false); // for heart animation
 
 	useEffect(() => {
+		console.log('Post data');
 		console.log('id:', id);
 		console.log('postList:', postList);
 		const postData = postList.find((post) => post.id === id);
@@ -46,14 +51,23 @@ function BlogPost() {
 				<div className="post_header">
 					<p className="post_title">{post.title}</p>
 					<div className="post_subtitle">
-						<a href={"https://substack.com/@nelsonrodriguez1?utm_source=user-menu"}>
-							<img className="post_substack_link" 
-							src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff9bfdfbf-ac5c-4bb4-99f7-a616cc0ca0cb_2448x3264.png" />
-						</a>
-						<div className="subtitle_info">
-							<p className="name">{post.author}</p>
-							<p className="date">{post.date}</p>
+						<div className="left_container">
+							<a href={"https://substack.com/@nelsonrodriguez1?utm_source=user-menu"}>
+								<img className="post_substack_link" 
+								src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff9bfdfbf-ac5c-4bb4-99f7-a616cc0ca0cb_2448x3264.png" />
+							</a>
+							<div className="subtitle_info">
+								<p className="name">{post.author}</p>
+								<p className="date">{post.date}</p>
+							</div>
 						</div>
+						<IconButton className="heart_button" style={{color: 'white'}}>
+							<FavoriteIcon className="heart_icon" color="secondary"
+							onMouseEnter={heartScale}
+							onClick={() => {
+								console.log('clicked');
+							}}/>
+						</IconButton>
 					</div>
 				</div>
 

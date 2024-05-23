@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { slideTitle, slideText, slideImage } from "./animations/aboutAnimations";
+import { slideTitle, slideText, slideImage, scale, unScale } from "./animations/aboutAnimations";
 import './styles/about.css';
-
+import Link from '@material-ui/core/Link';
 function About() {
 
 	useEffect(() => {
@@ -19,7 +19,7 @@ function About() {
 
 				<div className="text_container">
 					<p className="about_text"> 
-						I'm Nelson and I'm a recent CS graduate from <span><a className="gt" href="https://www.cc.gatech.edu/">Georgia Tech</a></span>. 
+						I'm Nelson and I'm a recent CS graduate from <span><Link className="gt" style={{textDecoration: 'none', fontWeight: '600'}} href="https://www.cc.gatech.edu/">Georgia Tech</Link></span>. 
 						I created this blog for my pursuit of writing and affection for Software, Technology, 
 						and Lifestyle. This blog serves as a canvas for my reflections and opinions, offering a platform to
 						articulate thoughts that often evade expression in my day-to-day life. 

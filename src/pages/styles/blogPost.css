@@ -35,16 +35,21 @@
 } .post_subtitle {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 	padding: 10px 0;
 	height: 40px;
 	font-size: 0.5em;
 	color: var(--primary-color-light);
-} .subtitle_info {
+} .left_container {
+	display: flex;
+	flex-direction: row;
+} 
+.subtitle_info {
 	margin: 0 20px;
 	text-align: left;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	align-self: flex-start;
 } .subtitle_info p {
 	font-weight: 500;
 	height: 20px;
@@ -66,6 +71,8 @@
 	height: 40px;
 	align-self: flex-start;
 	object-fit: cover;
+} .heart_button {
+	align-items: flex-end;
 }
 
 .post_body {

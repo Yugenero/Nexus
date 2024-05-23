@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { loginLoadingAnimation } from './animations/registrationLoginAnimations';
+import { LoginFailedPop } from './components/popOvers';
+import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import { useNavigate } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -10,12 +12,19 @@ import './styles/login.css';
 
 function LoginField() {
 
+	const navigate = useNavigate();
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const [loggedIn, setLoggedIn] = useState(false);
-	const navigate = useNavigate();
+	const [open, setOpen] = useState(false);	
+	const [errorMessage, setErrorMessage] = useState('');
+
+	
+	const handleCloseLogin = () => {
+		setOpen(false);
+	}
 
 	/**
 	 * event handler for deleting a user from teh database
@@ -48,10 +57,14 @@ function LoginField() {
 		// connect to server (server.js) to login a user
 		if (!username || !password) {
 			console.error('Missing username or password');
+			setErrorMessage('Missing username or password');
+			setOpen(true);
 			return;
 		} 
 		else if (username.length > 15 || username.length < 3) {
 			console.error('Username must be between 3 and 15 characters');
+			setErrorMessage('Username must be between 3 and 15 characters')
+			setOpen(true);
 			return;
 		} else {
 			setIsLoading(true);
@@ -63,14 +76,23 @@ function LoginField() {
 		.then(response => {
 			if (response.status === 200) {
 				console.log(username + ' has been logged in')
-				setIsLoading(false);
+				handleCloseLogin();
+				setIsLoading(false); // state for animation
 				navigate('/', {state: {loggedIn: true}});
+			} else if (response.status === 201) {
+				setErrorMessage('Invalid Password');
+				setOpen(true);
+				return;	
 			} 
- 			if (response.status === 400) console.error('Invalid username or password');
+			
+			// axios treats 400 as an error so it will catch
 		})
 		.catch(error => {
-			setIsLoading(false);
-			return console.log('Error finding user: ', error);
+			console.log('Error finding user: ', error);
+			setErrorMessage('User not found');
+			setOpen(true);
+			setIsLoading(false); // state for animation
+			return;
 		});
 	}
 
@@ -81,12 +103,20 @@ function LoginField() {
 	}, [isLoading]);
 
 	return (
+		<div>
+		<LoginFailedPop open={open} handleClose={handleCloseLogin} errorMessage={errorMessage}/>
+			
 		<Box className='form_submission_container'
 				component="form"
 				style={{height: '100vh', width: '100vw',
 					display: 'flex', flexDirection: 'column',
 					justifyContent: 'center'
 				}}>
+					<h1 className="title_nexus">Nexus</h1>
+					<p className='act'>Don't have an account?&nbsp; 
+						<Link to={'/register'} className='register'>Register here!</Link>
+					</p>
+
 
 					{/** Form submission container component for user login */}
 					<Box mb={1}>						
@@ -114,11 +144,16 @@ function LoginField() {
 					</Box>
 
 					<Button onClick={handleSubmit} variant='outlined'
-					style={{width: '400px'}}> Login </Button>
+					style={{color: 'var(--accent-color-darkblue)', width: '400px'}}> Login </Button>
 					{ isLoading && <div className='login_loading'>
 						<div className='login_loading_2'></div>
 					</div> }
+	
+
 			</Box>
+
+		</div>
+
 	)	
 };
 
@@ -141,7 +176,6 @@ function Login({props}) {
 
 	return (
 		<div className='login_ui'>
-			<h1 className='title'>Re-enter Information to Login</h1>
 			<LoginField/>
 		</div>
 	)

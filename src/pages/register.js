@@ -147,7 +147,7 @@ function Register(props) {
 				</Box>
 
 				<Link className="login" to={'/login'}> 
-					Or click here to Log In 
+					<p className="login_text">Or click here to Log In </p>
 				</Link>
 			</div>
 		</div>

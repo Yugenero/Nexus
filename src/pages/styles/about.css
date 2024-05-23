@@ -25,9 +25,13 @@
 	object-fit: cover;
 } .gt {
 	font-family: var(--font-family-gt);
-	color: var(--primary-color);
+	color: var(--accent-color-gt);
+	
 } .gt:hover {
-	cursor: pointer;
+	text-decoration: none;
+} .gt:visited {
+	color: var(--accent-color-gt);
+	text-decoration: none;
 }
 
 .about_container {

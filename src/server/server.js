@@ -5,15 +5,16 @@
  * Handles user registration, and will handle user login in the the future
  */
 
+require('dotenv').config(); // load environment variables
 const express = require('express'); // listen for POST requests
 const mongoose = require('mongoose'); // connect to MongoDB
 const cors = require('cors'); // allow cross-origin requests
-const bcrypt = require('bcrypt'); // hash passwords
 const WebSocket = require('ws'); // create a WebSocket server
 const http = require('http'); // create an HTTP server
 const path = require('path'); // Required to resolve paths
 const app = express(); // create an Express app
 const morgan = require('morgan'); // log requests to the console
+const bcrypt = require('bcrypt'); // hash passwords
 const port = 3000;
 
 
@@ -22,7 +23,7 @@ const server = http.createServer(app); // create an HTTP server
 const wss = new WebSocket.Server({ server: server, path: '/ws' });
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://neroxv1313:Snowfuzzyugen13-@mydb.vv5dhyk.mongodb.net/usersDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_CLIENT_ID, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to myDB in MongoDB Atlas!'))
 	.catch(err => console.log('Error: ' + err));
 
@@ -59,19 +60,27 @@ wss.on('connection', function connection(ws) {
 
 // POST endpoint for creating a new user
 app.post('/register', async(request, response) => {
+
+  
   try {
-    const hashedPassword = await bcrypt.hash(request.body.password, 10);
+    
+    const hashedPassword = await bcrypt.hash(request.body.password, 6);
     const newUser = new User({
       username: request.body.username,
       email: request.body.email,
       password: hashedPassword,
     });
 
+    const existingUsername = await User.findOne({ username: newUser.username }); 
+    const existingEmail = await User.findOne({ email: newUser.email });
+
     if (newUser.username === null || newUser.email === null || newUser.password === null
         || newUser.username === '' || newUser.email === '' || newUser.password === '') {
         return response.status(400).json("Missing username, email, or password");
     } else if (newUser.username.length > 15 || newUser.username.length < 3) {
         return response.status(400).json("Username must between 3 and 15 characters");
+    } else if (existingUsername || existingEmail) {
+        return response.status(400).json( {error: "Username or email already taken"} );
     }
 
     await newUser.save();

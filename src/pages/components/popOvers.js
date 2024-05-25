@@ -61,25 +61,26 @@ function LoginFailedPop({open, handleClose, errorMessage}) {
 	)
 }
 
-function RegistrationFailedPop({open, handleClose}) {
-	const anchorEl = open? document.body: null;	
+function RegistrationFailedPop({open, handleClose, errorMessage}) {
 
 	return (
 		<Popover
 			open={open}
-			anchorEl={anchorEl}
 			onClose={handleClose}
+			anchorPosition={{top: 0, left: 0}}
 			anchorOrigin={{
 				vertical: 'top',
-				horizontal: 'center',
+				horizontal: 'right',
 			}}
 			transformOrigin={{
 				vertical: 'top',
-				horizontal: 'center',
+				horizontal: 'right',
+			
 			}}
+
 			elevation={1}>
 			<Box sx={{ p: 2, bgcolor: 'accent.darkred', color: 'secondary'}}> 
-				<Typography style={{fontFamily: 'var(--font-family-gt)'}}>Missing username or password</Typography>
+				<Typography style={{fontFamily: 'var(--font-family-gt)'}}>{errorMessage}</Typography>
 			</Box>
 		</Popover>
 	)

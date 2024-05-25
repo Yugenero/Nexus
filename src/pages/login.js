@@ -56,8 +56,8 @@ function LoginField() {
 
 		// connect to server (server.js) to login a user
 		if (!username || !password) {
-			console.error('Missing username or password');
-			setErrorMessage('Missing username or password');
+			console.error('Invalid username or password');
+			setErrorMessage('Invalid username or password');
 			setOpen(true);
 			return;
 		} 
@@ -79,13 +79,7 @@ function LoginField() {
 				handleCloseLogin();
 				setIsLoading(false); // state for animation
 				navigate('/', {state: {loggedIn: true}});
-			} else if (response.status === 201) {
-				setErrorMessage('Invalid Password');
-				setOpen(true);
-				return;	
-			} 
-			
-			// axios treats 400 as an error so it will catch
+			} // axios treats 400 as an error so it will catch
 		})
 		.catch(error => {
 			console.log('Error finding user: ', error);
@@ -148,8 +142,6 @@ function LoginField() {
 					{ isLoading && <div className='login_loading'>
 						<div className='login_loading_2'></div>
 					</div> }
-	
-
 			</Box>
 
 		</div>

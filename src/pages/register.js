@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
 import { Box } from '@material-ui/core';
+import { RegistrationFailedPop } from "./components/popOvers";
 import { nexusMouseOver, nexusMouseOff } from "./animations/registrationLoginAnimations";
 import axios from 'axios';
 import './styles/register.css';
@@ -38,17 +39,24 @@ function RegistrationField({onUsernameChange, onEmailChange, onPasswordChange}) 
 	)
 }
 
-function Register(props) {
+function Register() {
 
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [open, setOpen] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
+	const handleClose = () => {
+		setOpen(false);
+	}
+
 
 	// navigation routes
 	const navigate = useNavigate();
 	const goBack = () => {
 		navigate('/');
 	};
+
 
 	// event handler for the form submission
 	/**
@@ -60,13 +68,30 @@ function Register(props) {
 
 		// connect to server (server.js) to register a user
 		if (!username || !email || !password) {
-			console.error('Missing username, or password');
+			console.error('Missing username, email, or password');
+			setErrorMessage('Missing username, email, or password');
+			setOpen(true);
 			return;
 		}
 		if (username.length > 15 || username.length < 3) {
 			console.error('Username must be between 3 and 15 characters');
+			setErrorMessage('Username must be between 3 and 15 characters');
+			setOpen(true);
+			return;
+		} 
+		if (password.length < 6) {
+			console.error('Password must be at least 6 characters');
+			setErrorMessage('Password must be at least 6 characters');
+			setOpen(true);
 			return;
 		}
+		let gmailRegex = /^[^\s@]+@(gmail|googlemail)\.com$/;
+		if (!gmailRegex.test(email)) {
+			console.error('Invalid gmail');
+			setErrorMessage('Invalid gmail');
+			setOpen(true);
+			return;
+		} 
 
 		axios.post('http://localhost:3000/register', {
 			username: username,
@@ -77,12 +102,17 @@ function Register(props) {
 			if (response.data === 'User created successfully') {
 				console.log('User ' + username + ' created successfully');
 				navigate('/login');
-			} else if (response.status === 400) {
-				console.error('Missing username or password');
 			}
 		})
 		.catch(error => {
-			console.error('Error creating user: ', error);
+			if (error.response && error.response.status === 400) {
+				console.error('Username already taken or email already taken');
+				setErrorMessage('Username already taken or email already taken');
+			} else {
+				console.error('Error creating user: ', error);
+				setErrorMessage('Error creating user: ' + error);
+			}
+			setOpen(true);
 		});
 	}
 
@@ -120,6 +150,8 @@ function Register(props) {
 		</div>
 		<div className="registration_elements">
 			<div className="registration_form_container">
+
+				<RegistrationFailedPop open={open} handleClose={handleClose} errorMessage={errorMessage}/>
 				
 				{/** registration request */}
 				<p className="form_container_text"> Sign In </p>

@@ -9,85 +9,69 @@ import { Box } from '@material-ui/core';
 import axios from 'axios';
 import anime from 'animejs';
 import './styles/login.css';
+import { set } from 'mongoose';
 
 function LoginField() {
-
+	
 	const navigate = useNavigate();
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
-	const [isLoading, setIsLoading] = useState(false);
-	const [loggedIn, setLoggedIn] = useState(false);
-	const [open, setOpen] = useState(false);	
-	const [errorMessage, setErrorMessage] = useState('');
-
+	const [isLoading, setIsLoading] = useState(false); // loading animation
+	const [open, setOpen] = useState(false); // login failed pop up
+	const [errorMessage, setErrorMessage] = useState(''); // error message for pop up
+	
 	
 	const handleCloseLogin = () => {
 		setOpen(false);
 	}
 
-	/**
-	 * event handler for deleting a user from teh database
-	 * figure out how to make this thing work later
-	 * @param {event} event 
-	 * @returns 
-	 */
-	const handleDelete = (event) => {
-		event.preventDefault();
-		if (!username) return console.log('user does not exist in the database'); 
-
-		axios.post('http://localhost:3000/delete', {
-			username: username,
-			password: password
-		})
-		.then(response => {
-			if (response.status === 200) {
-				console.log('User'  + username + ' deleted successfully');
-				navigate('/');
-			}
-		})
-		.catch(error => {
-			console.log("Error deleting user: " + error);
-		})
-	}
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		// connect to server (server.js) to login a user
+		// handle checks for empty fields
 		if (!username || !password) {
 			console.error('Invalid username or password');
 			setErrorMessage('Invalid username or password');
 			setOpen(true);
 			return;
 		} 
-		else if (username.length > 15 || username.length < 3) {
+		else if (username.length > 20 || username.length < 3) {
 			console.error('Username must be between 3 and 15 characters');
 			setErrorMessage('Username must be between 3 and 15 characters')
 			setOpen(true);
 			return;
-		} else {
-			setIsLoading(true);
 		}
-		axios.post('http://localhost:3000/login', {
-			username: username,
-			password: password
-		})
-		.then(response => {
-			if (response.status === 200) {
-				console.log(username + ' has been logged in')
-				handleCloseLogin();
-				setIsLoading(false); // state for animation
-				navigate('/', {state: {loggedIn: true}});
-			} // axios treats 400 as an error so it will catch
-		})
-		.catch(error => {
-			console.log('Error finding user: ', error);
-			setErrorMessage('User not found');
-			setOpen(true);
-			setIsLoading(false); // state for animation
-			return;
-		});
+
+		axios.post('http://localhost:3000/login', { username, password }, { withCredentials: true })
+			.then(response => {
+				if (response.status === 200) {
+					setErrorMessage('Login successful');
+					setOpen(true);
+					handleCloseLogin();
+					navigate('/', { state: { loggedIn: true } });
+				}
+			}).catch(error => {
+				if (error.response && error.response.status === 409) {
+					console.log('User is already logged in');
+					setErrorMessage('User is already logged in');
+					setOpen(true);
+					return;
+				} else if (error.response && error.response.status === 400) {
+					console.log('Cannot find user');
+					setErrorMessage('Cannot find user');
+					setOpen(true);
+					return;
+				} else if (error.response && error.response.status === 401) {
+					console.log('Password is incorrect');
+					setErrorMessage('Password is incorrect');
+					setOpen(true);
+					return;
+				}	
+				console.log("Error finding user in the database");
+				setErrorMessage('User not found');
+				setIsLoading(false);
+			})
 	}
 
 	useEffect(() => {
@@ -149,6 +133,44 @@ function LoginField() {
 	)	
 };
 
+
+function Logout() {
+
+	const [open, setOpen] = useState(false);	
+	const [errorMessage, setErrorMessage] = useState('');	
+	const navigate = useNavigate();
+	const handleClose = () => {
+		setOpen(false);
+	}
+	
+	const handleLogout = (event) => {
+		event.preventDefault();
+		axios.post('http://localhost:3000/logout', {}, { withCredentials: true })
+		.then(response => {
+			if (response.status === 200) {
+				setErrorMessage('You have been logged out');
+				navigate('/');
+			}
+		})
+		.catch(error => {
+			console.log("Error destroying session/No active session found)" + error);
+			setErrorMessage("Error destroying session/No active session found")
+		})
+	}
+	return (
+		<div className='Logout'>
+			<LoginFailedPop open={open} handleClose={handleClose} errorMessage={errorMessage}/>
+			<Button onClick={handleLogout} variant='outlined'
+			style={{color: 'var(--accent-color-darkblue)', width: '400px',
+				transform: 'translateY(-205px)'
+			}}>
+				Logout 
+			</Button>
+		</div>
+	)
+
+}
+
 /**
  * Note to myself: A bit on prop destructuring
  * Properties is just another word for parameter, they are a proper subset of 
@@ -169,6 +191,7 @@ function Login({props}) {
 	return (
 		<div className='login_ui'>
 			<LoginField/>
+			<Logout/>
 		</div>
 	)
 }

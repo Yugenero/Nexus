@@ -71,7 +71,7 @@ function LoginField() {
 				console.log("Error finding user in the database");
 				setErrorMessage('User not found');
 				setIsLoading(false);
-			})
+			});
 	}
 
 	useEffect(() => {

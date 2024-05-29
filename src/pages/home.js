@@ -11,6 +11,7 @@ import { animateImage, resetAnimateImage } from "./animations/homeAnimations";
 import { linkSlideIn } from "./animations/homeAnimations";
 import { useLocation } from "react-router-dom";
 import { LoginPopover } from "./components/popOvers"; 
+import LoggedInStatus from "./components/LoggedInStatus";
 import './styles/home.css';
 
 const styles = makeStyles(() => ({
@@ -95,7 +96,8 @@ function Home() {
 			<div className="home_ui_container">
 				<div className="hc">
 
-				
+				<LoggedInStatus/>
+
 				<Link className="hc_recent" onLoad={linkSlideIn} to={`/p/${recentPost0.id}`}
 				onMouseEnter={animateImage}
 				onMouseLeave={resetAnimateImage}

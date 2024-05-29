@@ -1,6 +1,8 @@
-# A personal blog and newsletter where I share my own opinions on Tech, CS/Engineering, Lifestyle among many other things
+# Nexus
+ 
+A personal blog and newsletter where I share my own opinions on Tech, CS/Engineering, Lifestyle among many other things
 
-# Written from sratch using MERN
+### Written from sratch using MERN
 
 Front-end: React.js
 Back-end: Express.js/Node.js/MongoDB

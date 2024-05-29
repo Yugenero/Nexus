@@ -1,5 +1,5 @@
-# Nexus
- 
+<img width="260" alt="image" src="https://github.com/Yugenero/Nexus/assets/44268896/262686fb-d9ec-406a-a152-678e316f0917">  
+  
 A personal blog and newsletter where I share my own opinions on Tech, CS/Engineering, Lifestyle among many other things
 
 ### Written from sratch using *MERN*

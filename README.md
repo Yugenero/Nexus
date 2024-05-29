@@ -6,7 +6,7 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 
 Front-end: React.js  
 Back-end: Express.js/Node.js/MongoDB  
-Libraries: MUI, Anime.js  
+Libraries: MUI/Anime.js  
 
 In the project directory, you can run:
 

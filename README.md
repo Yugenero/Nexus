@@ -1,17 +1,10 @@
-A personal blog and newsletter where I share my own opinions on Lifestyle, Tech, CS/Engineering, among many other things
+#A personal blog and newsletter where I share my own opinions on Tech, CS/Engineering, Lifestyle among many other things
 
-Techstack {
-	- React.js
-	- HTML/CSS
-	- Node.js/Express.js
-	- Google Sign-in/MongoDB
-}
+#Written from sratch using MERN
 
-Libraries {
-	- Material UI
-	- Anime.js
-}
-
+Front-end: React.js
+Back-end: Express.js/Node.js/MongoDB
+Libraries: MUI, Anime.js
 
 In the project directory, you can run:
 

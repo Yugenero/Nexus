@@ -96,8 +96,6 @@ function Home() {
 			<div className="home_ui_container">
 				<div className="hc">
 
-				<LoggedInStatus/>
-
 				<Link className="hc_recent" onLoad={linkSlideIn} to={`/p/${recentPost0.id}`}
 				onMouseEnter={animateImage}
 				onMouseLeave={resetAnimateImage}

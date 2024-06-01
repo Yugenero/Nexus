@@ -6,19 +6,35 @@
  */
 
 require('dotenv').config(); // load environment variables
-const express = require('express'); // listen for POST requests
-const mongoose = require('mongoose'); // connect to MongoDB
-const cors = require('cors'); // allow cross-origin requests
+const port = 3000;
 const WebSocket = require('ws'); // create a WebSocket server
 const http = require('http'); // create an HTTP server
 const path = require('path'); // Required to resolve paths
+const morgan = require('morgan'); // log requests to the console
+const express = require('express'); // listen for POST requests
 const session = require('express-session'); // Required for session management
 const MongoStore = require('connect-mongo'); // Required for session management
 const app = express(); // create an Express app
-const morgan = require('morgan'); // log requests to the console
+const mongoose = require('mongoose'); // connect to MongoDB
+const cors = require('cors'); // allow cross-origin requests
 const bcrypt = require('bcrypt'); // hash passwords
-const port = 3000;
+const jwt = require('jsonwebtoken');
 
+// define a session store using MongoDB
+const sessionStore = MongoStore.create({ 
+  mongoUrl: process.env.MONGO_CLIENT_ID,
+  ttl: 60 * 60, // 1 hour
+});
+// create a session
+app.use(session({
+  name: 'my.session.cookie',
+  secret: 'nero-super-awesome-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  store: sessionStore,
+  // set cookie to true when https is enabled and website is deployed
+  cookie: { secure: false, httpOnly: true, maxAge: 1000 * 60 * 60 }, // 1 hour
+}));
 
 const server = http.createServer(app); // create an HTTP server
 // Create a WebSocket server
@@ -52,20 +68,10 @@ app.use('/images', (req, res, next) => {
   next();
 });
 
-// websocket connection (for real-time user interaction not necessary for this project)
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
-  ws.send('ws server connected');
-});
-
 // POST endpoint for creating a new user
 app.post('/register', async(request, response) => {
 
-  
   try {
-    
     const hashedPassword = await bcrypt.hash(request.body.password, 6);
     const newUser = new User({
       username: request.body.username,
@@ -97,48 +103,106 @@ app.post('/register', async(request, response) => {
 })
 
 // POST endpoint for logging in a user
-app.post('/login', async(request, response) => {
-
+app.post('/login', async (request, response) => {
+  
   try {
-    const user = await User.findOne({username: request.body.username})
-    if (!user || user.username != request.body.username) {
-      console.log(request.body.username + ' was not found in the database')
-      return response.status(400).json('Cannot find user'); 
+    // Check if the username and password are provided
+    const { username, password } = request.body;
+    if (!username || !password) {
+      console.log('Missing username or password');  
+      return response.status(400).json('Missing username or password');
     }
 
-    // if user exists in the database
+    const user = await User.findOne({ username: request.body.username });
+    if (!user) {
+      console.log(`${user.username} was not found in the database`);
+      return response.status(400).json('Cannot find user');
+    }
+
     const match = await bcrypt.compare(request.body.password, user.password);
 
-    if (match) {
-      // server side console.log will go to the terminal
-      console.log(user.username + ' logged into the database');
-      console.log('User session information: ');
-      return response.status(200).json('User was found');
-    }
-    console.log('Password is incorrect');
-    response.status(201).json('Invalid Password');
+    // crosscheck database password with user input password
+    if (!match) {
+      console.log('Password is incorrect');
+      return response.status(401).json('Password is incorrect');       
+    } 
 
+    // Iterate through all sessions to check if user already has active session
+    sessionStore.all((err, sessions) => {
+      if (err) {
+        console.log('Error getting all sessions:', err);
+        return response.status(500).json('Error getting all sessions');
+      } 
+      const activeSession = Object.values(sessions).find(
+        (s) => s.userId === user._id.toString()
+      );
+      if (activeSession) {
+        console.log('User is already logged in');
+        console.log('Session ID: ' + request.session.userId);
+        return response.status(409).json('User is already logged in');
+      } else {
+        console.log("request.session.userId before override: " + request.session.userId);
+        request.session.userId = user._id;
+        request.session.username = user.username;
+        console.log('User ' + user.username + ' logged in successfully');
+        console.log('Session details:', JSON.stringify(request.session, null, 2));
+        return response.status(200).json('Login successful');
+      }
+    });
   } catch (error) {
-    console.log('User login error: ' + error);
-    return response.status(400).json('User was not found in the database');
+    console.log('Generalized user login error: ' + error);
+    return response.status(400).json('An error occurred during login');
+  }
+});
+
+// POST endpoint for logging user out 
+app.post('/logout', (req, res) => {
+  try {
+    req.session.destroy(err => {
+      if (err) {
+        return res.status(500).json({ error: 'Could not log out, please try again' });
+      } else {
+        res.clearCookie('my.session.cookie'); // Clear the cookie
+        return res.status(200).json({ message: 'Logged out' });
+      }
+    });
+  } catch(error) {
+    console.log('Error logging out:', error);
+    return res.status(500).json('Error logging out');
+  }
+});
+
+// GET endpoint for checking if a user is logged in
+app.get('/isLoggedIn', async (req, res) => {
+  console.log('Session ID:', req.session.id);
+  console.log('User ID:', req.session.userId);
+  if (req.session.userId) {
+    // Find the user in the database
+    const user = await User.findById(req.session.userId);
+    if (user) {
+      // If the user is found, return their username
+      res.status(200).json({ isLoggedIn: true, username: user.username });
+    } else {
+      // If the user is not found, return an error
+      res.status(404).json({ error: 'User not found' });
+    }
+  } else {
+    res.status(200).json({ isLoggedIn: false });
+  }
+});
+
+app.get('/verifyCurrentSessionUndergoing', async (req, res) => {
+  if (req.session.id != null || req.session.id != undefined) {
+    res.status(200).json({ currentSessionUndergoing: true });
+  } else {
+    res.status(200).json({ currentSessionUndergoing: false });
+  
   }
 })
 
+// ALL DATA OPERATIONS NEED TO BE WRITTEN ABOVE THIS LINE
 
-// POST endpoint for deleting a user 
-app.post('/delete', async(request, response) => {
-  
-  const user = await User.findOne({username: request.body.username});
-  
-  // adding return will stop function propagation
-  if (!user) {
-    return response.status(400).json('User not found');
-  } else {
-    await User.deleteOne({username: request.body.username});
-  } 
-})
-
-// GET endpoint for getting all users
+// catch all route for serving index.html
 app.get('*', (req, res) => {
   console.log(`Serving index.html for route: ${req.path}`);
   res.sendFile(path.join(__dirname, '..', '..', 'build', 'index.html'));

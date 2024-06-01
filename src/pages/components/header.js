@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import LoggedInStatus from "./LoggedInStatus";
 import '../styles/home.css';
 
 function Header() {
@@ -13,6 +14,8 @@ function Header() {
 	return (
 		<div className="header">	
 			<a className="header_logo" onClick={navigateToHome}>Nexus</a>
+ 			
+			
 			<div className="header_nav">
 				<a className="header_nav_item" onClick={navigateToBlogs}>
 					Archive
@@ -23,6 +26,7 @@ function Header() {
 				<a className="header_nav_item" onClick={navigateToRegister}>
 					Account
 				</a>
+				<LoggedInStatus/>
 			</div> 
 		</div>
 	);

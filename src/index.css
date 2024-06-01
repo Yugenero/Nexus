@@ -14,7 +14,7 @@
   --accent-color-darkblue: rgb(0, 0, 150);
   --accent-color-lightblue: rgb(50, 0, 255);
   --accent-color-gt: rgb(179, 163, 105);
-  --font-family-design: Georgia, 'Times New Roman', Times, serif;
+  --font-family-design: Georgia;
 	--font-family-text: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-gt: 'Roboto Slab', 'Roboto', sans-serif;
   --font-family-text2: 'Helvetica';

@@ -43,6 +43,17 @@ function LoginField() {
 			return;
 		}
 
+		axios.get('http://localhost:3000/isLoggedIn', { withCredentials: true })
+			.then(response => {
+				if (response.data.isLoggedIn) {
+					console.log(response.data.username + ' is already logged in');
+					setErrorMessage(response.data.username + ' is already logged in');
+					setOpen(true);
+					return;
+				}
+		})
+		
+
 		axios.post('http://localhost:3000/login', { username, password }, { withCredentials: true })
 			.then(response => {
 				if (response.status === 200) {

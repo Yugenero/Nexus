@@ -4,7 +4,7 @@ import anime from 'animejs';
 /**
  * Registration animations
  */
-function nexusMouseOver(registrationVisual, nexus_text) {
+function nexusMouseOver(registrationVisual, nexus_text, nexus) {
 	anime({
 		targets: registrationVisual,
 		backgroundColor: '#ffffff',
@@ -17,9 +17,15 @@ function nexusMouseOver(registrationVisual, nexus_text) {
 		duration: 500,
 		easing: 'linear'
 	});
+	anime({
+		targets: nexus,
+		color: '#A80000',
+		duration: 200,
+		easing: 'easeInOutSine'
+	}) 
 }
 
-function nexusMouseOff(registrationVisual, nexus_text, originalColor) {
+function nexusMouseOff(registrationVisual, nexus_text, originalColor, nexus) {
 	anime({
 		targets: registrationVisual,
 		backgroundColor: originalColor, // reset to original color
@@ -32,6 +38,12 @@ function nexusMouseOff(registrationVisual, nexus_text, originalColor) {
 		duration: 500,
 		easing: 'linear'
 	});
+	anime({
+		targets: nexus,
+		color: '#ffffff',
+		duration: 200,
+		easing: 'easeInOutSine'
+	}) 
 }
 
 /**

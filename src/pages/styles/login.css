@@ -1,6 +1,8 @@
 .login_ui {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	height: 100vh;
 	width: 100vw;
 }
@@ -82,4 +84,17 @@
 
 .act {
 	font-size: 0.5em;
+}
+
+.lo_nexus {
+	margin: 0;
+	background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-lightblue));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: var(--font-family-design);
+    font-size: 3em;
+	font-weight: 100;
+	user-select: none;
 }

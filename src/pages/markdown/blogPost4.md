@@ -3,7 +3,7 @@ id: 4
 author: Nelson E. Rodriguez
 date: MAY 04, 2024
 title: You can do anything, but not everything
-imgURL: /images/CS_flow3.jpeg
+imgURL: /images/CS_flow.jpeg
 category: Lifestyle
 excerpt:
 ---

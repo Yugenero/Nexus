@@ -24,11 +24,12 @@
 	height: 700px; 
 	object-fit: cover;
 } .gt {
+	display: inline-block;
 	font-family: var(--font-family-gt);
 	color: var(--accent-color-gt);
-	
 } .gt:hover {
 	text-decoration: none;
+	cursor: pointer;
 } .gt:visited {
 	color: var(--accent-color-gt);
 	text-decoration: none;
@@ -69,6 +70,8 @@
 
 .what_is_nexus {
 	font-weight: normal;
+	font-family: var(--font-family-design);
+	color: var(--primary-color);
 }
 
 #nexus {

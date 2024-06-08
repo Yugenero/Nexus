@@ -2,14 +2,20 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField, IconButton, InputAdornment } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { RegistrationFailedPop } from "./components/popOvers";
 import { nexusMouseOver, nexusMouseOff } from "./animations/registrationLoginAnimations";
 import axios from 'axios';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import './styles/register.css';
 
-function RegistrationField({onUsernameChange, onEmailChange, onPasswordChange}) {
+function RegistrationField({onUsernameChange, onEmailChange, onPasswordChange, onFocus}) {
+	const [showPassword, setShowPassword] = useState(false);
+	const handleClickShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
 	return(
 		<Box
 			component="form"
@@ -22,16 +28,27 @@ function RegistrationField({onUsernameChange, onEmailChange, onPasswordChange}) 
 			<Box mb={2} >
 			<TextField className="registration_text_field" label="Username" variant="outlined"
 				style={{width: '400px'}}
+				onFocus={onFocus}
 				onChange={(event) => onUsernameChange(event.target.value)} 
 				color="secondary"/>
 			</Box> <Box mb={2}>
 			<TextField className="registration_text_field" label="Email" variant="outlined" 
 				style={{width: '400px'}}
+				onFocus={onFocus}
 				onChange={(event) => onEmailChange(event.target.value)} 
 				color="secondary"/>
 			</Box> <Box mb={2}>
-			<TextField className="registration_text_field" label="Password" variant="outlined" 
+			<TextField className="registration_text_field" label="Password" variant="outlined" type={showPassword ? "text" : "password"}
 				style={{width: '400px'}}
+				onFocus={onFocus}
+				InputProps={{
+					endAdornment: (
+					  <InputAdornment position="end">
+						<IconButton onClick={handleClickShowPassword}>
+						  {showPassword ? <Visibility /> : <VisibilityOff />}
+						</IconButton>
+					  </InputAdornment> ),
+				}}
 				onChange={(event) => onPasswordChange(event.target.value)}
 				color="secondary" />
 			</Box>
@@ -46,16 +63,24 @@ function Register() {
 	const [password, setPassword] = useState('');
 	const [open, setOpen] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
+
+
 	const handleClose = () => {
 		setOpen(false);
 	}
-
 
 	// navigation routes
 	const navigate = useNavigate();
 	const goBack = () => {
 		navigate('/');
 	};
+
+	const handleFocus = () => {
+		const visual = document.querySelector('.registration_visual');
+		const text = document.querySelector('.nexus_text');
+		const nexus = document.querySelector('.nexus');
+		nexusMouseOver(visual, text, nexus);
+	}
 
 
 	// event handler for the form submission
@@ -121,18 +146,15 @@ function Register() {
 	useEffect(() => {
         const registrationVisual = document.querySelector('.registration_visual');
 		const nexus_text = document.querySelector('.nexus_text');
-		const textField = document.querySelector('.registration_text_field');
+		const nexus = document.querySelector('.nexus');
 		const originalColor = getComputedStyle(registrationVisual).backgroundColor;
 
         document.querySelector('.nexus').addEventListener('mouseenter', () => {
-            nexusMouseOver(registrationVisual, nexus_text);
+            nexusMouseOver(registrationVisual, nexus_text, nexus);
         });
         document.querySelector('.nexus').addEventListener('mouseleave', () => {
-            nexusMouseOff(registrationVisual, nexus_text, originalColor);
+            nexusMouseOff(registrationVisual, nexus_text, originalColor, nexus);
         });
-		textField.addEventListener('focus', () => {
-			nexusMouseOver(registrationVisual, nexus_text);
-		})
     }, []);
 
 	return (
@@ -159,6 +181,7 @@ function Register() {
 						onUsernameChange={setUsername}
 						onEmailChange={setEmail}
 						onPasswordChange={setPassword}
+						onFocus={handleFocus}
 						/>
 					<Button 
 					style={{color: 'var(--accent-color-darkblue)'}}
@@ -172,8 +195,7 @@ function Register() {
 						variant="outlined" 
 						className="back_button"
 						style={{width: '400px', color: 'var(--accent-color-darkred)'}}
-						onClick={goBack}
-						>
+						onClick={goBack}>
 						Back
 					</Button> 
 				</Box>

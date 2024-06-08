@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { loginLoadingAnimation } from './animations/registrationLoginAnimations';
 import { LoginFailedPop } from './components/popOvers';
 import { Link } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
 import { useNavigate } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { Button, TextField, IconButton, InputAdornment } from '@material-ui/core';
 import { Box } from '@material-ui/core';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import axios from 'axios';
-import anime from 'animejs';
 import './styles/login.css';
-import { set } from 'mongoose';
 
 function LoginField() {
 	
@@ -18,9 +17,13 @@ function LoginField() {
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const [isLoading, setIsLoading] = useState(false); // loading animation
-	const [open, setOpen] = useState(false); // login failed pop up
+	const [open, setOpen] = useState(false); // login pop ups
 	const [errorMessage, setErrorMessage] = useState(''); // error message for pop up
-	
+	const [showPassword, setShowPassword] = useState(false);
+
+	const handleClickShowPassword = () => {
+		setShowPassword(!showPassword);
+	}
 	
 	const handleCloseLogin = () => {
 		setOpen(false);
@@ -42,16 +45,6 @@ function LoginField() {
 			setOpen(true);
 			return;
 		}
-
-		axios.get('http://localhost:3000/isLoggedIn', { withCredentials: true })
-			.then(response => {
-				if (response.data.isLoggedIn) {
-					console.log(response.data.username + ' is already logged in');
-					setErrorMessage(response.data.username + ' is already logged in');
-					setOpen(true);
-					return;
-				}
-		})
 		
 
 		axios.post('http://localhost:3000/login', { username, password }, { withCredentials: true })
@@ -59,7 +52,6 @@ function LoginField() {
 				if (response.status === 200) {
 					setErrorMessage('Login successful');
 					setOpen(true);
-					handleCloseLogin();
 					navigate('/', { state: { loggedIn: true } });
 				}
 			}).catch(error => {
@@ -90,6 +82,18 @@ function LoginField() {
 			loginLoadingAnimation();
 		}
 	}, [isLoading]);
+
+	useEffect(() => {
+		axios.get('http://localhost:3000/isLoggedIn', { withCredentials: true })
+		.then(response => {
+			if (response.data.isLoggedIn) {
+				console.log(response.data.username + ' is already logged in');
+				setErrorMessage('Seems like youre already logged in!');
+				setOpen(true);
+				return;
+			}
+		})
+	}, [])
 
 	return (
 		<div>
@@ -126,9 +130,19 @@ function LoginField() {
 
 					<Box mb={1}>
 					<TextField className="login_field" variant='outlined' 
+					type={showPassword ? 'text' : 'password'} // Add this line
 					style={{color: 'var(--accent-color-darkred)', width: '400px'}}
-					color='secondary'
+					InputProps={{
+					  endAdornment: (
+						<InputAdornment position="end">
+						  <IconButton onClick={handleClickShowPassword}>
+							{showPassword ? <Visibility /> : <VisibilityOff />}
+						  </IconButton>
+						</InputAdornment>
+					  ),
+					}}
 					onChange={(event => setPassword(event.target.value))}
+					color='secondary'
 					label="Password"/>
 					</Box>
 
@@ -138,17 +152,16 @@ function LoginField() {
 						<div className='login_loading_2'></div>
 					</div> }
 			</Box>
-
 		</div>
-
 	)	
 };
 
 
-function Logout() {
+function Logout( {username} ) {
 
 	const [open, setOpen] = useState(false);	
 	const [errorMessage, setErrorMessage] = useState('');	
+
 	const navigate = useNavigate();
 	const handleClose = () => {
 		setOpen(false);
@@ -159,8 +172,9 @@ function Logout() {
 		axios.post('http://localhost:3000/logout', {}, { withCredentials: true })
 		.then(response => {
 			if (response.status === 200) {
+				console.log("returning logout status " + false);
 				setErrorMessage('You have been logged out');
-				navigate('/');
+				navigate('/', { state: { loggedIn: false }});
 			}
 		})
 		.catch(error => {
@@ -169,17 +183,21 @@ function Logout() {
 		})
 	}
 	return (
-		<div className='Logout'>
-			<LoginFailedPop open={open} handleClose={handleClose} errorMessage={errorMessage}/>
-			<Button onClick={handleLogout} variant='outlined'
-			style={{color: 'var(--accent-color-darkblue)', width: '400px',
-				transform: 'translateY(-205px)'
-			}}>
-				Logout 
+		<div>
+		<LoginFailedPop open={open} handleClose={handleClose} errorMessage={errorMessage}/>
+			<h1 className="lo_nexus">Nexus</h1>
+			<Button onClick={handleLogout} variant='text'
+				style={{
+					fontWeight: "600", 
+					color: 'var(--accent-color-darkblue)', 
+					width: '250px',
+					fontFamily: 'var(--font-family-text-gt)'
+				}}>
+				
+				Logout of {username}
 			</Button>
 		</div>
 	)
-
 }
 
 /**
@@ -196,13 +214,31 @@ function Logout() {
  *			is equivalent to let name = props.name
  */
 
-function Login({props}) {
+function Login() {
 
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
+	const [username, setUsername] = useState('');
+
+	useEffect(() => {
+		axios.get('http://localhost:3000/isLoggedIn', { withCredentials: true })
+		.then(response => {
+			response.data.isLoggedIn ? setIsLoggedIn(true) : setIsLoggedIn(false);
+			setUsername(response.data.username);
+			setIsLoading(false);
+		})
+	}, []) // empty array means useEffect only runs once
+
+	if (isLoading) return (
+		<div>
+			Loading...
+		</div>
+	)
 
 	return (
 		<div className='login_ui'>
-			<LoginField/>
-			<Logout/>
+			{!isLoggedIn ? (<div> <LoginField/> </div>) :
+			(<div> <Logout username={username}/> </div>)}
 		</div>
 	)
 }

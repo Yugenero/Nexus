@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import BlogPostRecent from "./components/blogPostRecent";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import postList from "./data/posts.json";
 import { animateImage, resetAnimateImage } from "./animations/homeAnimations";
 import { linkSlideIn } from "./animations/homeAnimations";
-import { useLocation } from "react-router-dom";
-import { LoginPopover } from "./components/popOvers"; 
-import LoggedInStatus from "./components/LoggedInStatus";
+import axios from 'axios';
 import './styles/home.css';
 
 const styles = makeStyles(() => ({
@@ -35,7 +32,6 @@ const styles = makeStyles(() => ({
 		fontFamily: 'var(--font-family-text)',
 	},
 	hc_me : {	
-		fontWeight: 'bold',
 		color: 'var(--primary-color-light)',
 		fontWeight: 'normal',
 		textDecoration: 'none',
@@ -75,28 +71,42 @@ function Home() {
 	const recentPost2 = postList[postList.length - 3];
 	const recentPost3 = postList[postList.length - 4];
 
-	// login pop-over on successful navigate
-	const location = useLocation();
-	const loggedIn = location.state?.loggedIn;
-	const [open, setOpen] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [username, setUsername] = useState('');
+  	const [loading, setLoading] = useState(true);
 
-	// handle close for login popup
-	const handleCloseLogin = () => {
-		setOpen(false);
-	}
-	useEffect(() => {
-		if (loggedIn) {
-			setOpen(true);
+	const checkLoginStatus = async () => {
+		try {
+			const response = await axios.get('http://localhost:3000/isLoggedIn');
+			setIsLoggedIn(response.data.isLoggedIn);
+			setUsername(response.data.username);
+			setLoading(false);
+		} catch (error) {
+			console.error('Error checking login status:', error);
+			setLoading(false);
 		}
+	};
+	
+	useEffect(() => {
+		checkLoginStatus();
 	}, []);
 
+	useEffect(() => {
+		linkSlideIn();
+	}, [])
+	
+	if (loading) {
+		// return blank page (or loading animation)
+		return <div></div>
+	}
+	
 	return (
 		<div>
-			<Header/>
+			<Header isLoggedIn={isLoggedIn} username={username}/>
 			<div className="home_ui_container">
 				<div className="hc">
 
-				<Link className="hc_recent" onLoad={linkSlideIn} to={`/p/${recentPost0.id}`}
+				<Link className="hc_recent" to={`/p/${recentPost0.id}`}
 				onMouseEnter={animateImage}
 				onMouseLeave={resetAnimateImage}
 				style={{textDecoration: 'none'}}> 
@@ -109,7 +119,6 @@ function Home() {
 				</Link>
 
 				<div className={classes.break}> </div>
-				<LoginPopover open={open} handleClose={handleCloseLogin} />
 
 				<div className="hc_recent_container">
 					<div className="hc_recent_title">

@@ -26,18 +26,17 @@ function slideImage() {
 	})
 }
 
-function scale() {
+function gtScale() {
 	anime ({
 		targets: '.gt',
-		scale: [1, 1.3],
-		duration: 1000,
+		scale: [1, 0.9],
 		direction: 'alternate',
 		loop: 1,
 	})
-} function unScale() {
+} function gtUnScale() {
 	anime ({
 		targets: '.gt',
-		scale: [1.3, 1],
+		scale: [0.9, 1],
 		duration: 1000,
 		direction: 'alternate',
 		loop: 1,
@@ -45,4 +44,4 @@ function scale() {
 
 }
 
-export { slideTitle, slideText, slideImage, scale, unScale };
+export { slideTitle, slideText, slideImage, gtScale, gtUnScale };

@@ -15,17 +15,23 @@ function animateImage() {
 }
 
 function linkSlideIn() {
-	const hcRecent = document.querySelector('.hc_recent');
-	hcRecent.style.pointerEvents = 'none';
-	anime ({
-		targets: hcRecent,
-		translateX: ['-100%', '0%'],
-		duration: 800,
-		complete: function() {
-			hcRecent.style.pointerEvents = 'auto';
+	window.onload = function() {
+		const hcRecent = document.querySelector('.hc_recent');
+		if (hcRecent) {
+			hcRecent.style.pointerEvents = 'none';
+			anime({
+				targets: hcRecent,
+				translateX: ['-100%', '0%'],
+				rotate: [90, 0],
+				duration: 1000,
+				complete: function() {
+					hcRecent.style.pointerEvents = 'auto';
+				}
+			});
 		}
-	});
-}
+	}
+
+	}
 
 function scaleRecent(selector) {
     const element = document.querySelector(selector);

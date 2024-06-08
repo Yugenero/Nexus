@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect }	from 'react';
 import LoggedInStatus from "./LoggedInStatus";
+import axios from 'axios';
 import '../styles/home.css';
 
-function Header() {
+function Header( { isLoggedIn, username } ) {
 
 	const navigate = useNavigate();
 	const navigateToHome = () => navigate('/');
@@ -14,8 +16,6 @@ function Header() {
 	return (
 		<div className="header">	
 			<a className="header_logo" onClick={navigateToHome}>Nexus</a>
- 			
-			
 			<div className="header_nav">
 				<a className="header_nav_item" onClick={navigateToBlogs}>
 					Archive
@@ -26,8 +26,8 @@ function Header() {
 				<a className="header_nav_item" onClick={navigateToRegister}>
 					Account
 				</a>
-				<LoggedInStatus/>
-			</div> 
+				<LoggedInStatus status={isLoggedIn} user={username}/>
+			</div>
 		</div>
 	);
 }

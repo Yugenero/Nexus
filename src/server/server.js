@@ -20,6 +20,8 @@ const cors = require('cors'); // allow cross-origin requests
 const bcrypt = require('bcrypt'); // hash passwords
 const jwt = require('jsonwebtoken');
 
+const postRoutes = require('./postRoutes.js');
+
 // define a session store using MongoDB
 const sessionStore = MongoStore.create({ 
   mongoUrl: process.env.MONGO_CLIENT_ID,
@@ -68,9 +70,14 @@ app.use('/images', (req, res, next) => {
   next();
 });
 
+app.use(postRoutes.router);
+
+/**
+ * USER AUTHENTICATION ENDPOINTS
+ */
+
 // POST endpoint for creating a new user
 app.post('/register', async(request, response) => {
-
   try {
     const hashedPassword = await bcrypt.hash(request.body.password, 6);
     const newUser = new User({
@@ -191,15 +198,6 @@ app.get('/isLoggedIn', async (req, res) => {
   }
 });
 
-app.get('/verifyCurrentSessionUndergoing', async (req, res) => {
-  if (req.session.id != null || req.session.id != undefined) {
-    res.status(200).json({ currentSessionUndergoing: true });
-  } else {
-    res.status(200).json({ currentSessionUndergoing: false });
-  
-  }
-})
-
 // ALL DATA OPERATIONS NEED TO BE WRITTEN ABOVE THIS LINE
 
 // catch all route for serving index.html
@@ -215,4 +213,5 @@ app.listen(port, (error) => {
     console.log('App.listen Error:' + error);
   }
   console.log('Server is running on port ' + port);
+  console.log('postRoutes.js' + postRoutes.router.stack);
 });

@@ -5,6 +5,7 @@ import postList from "./data/posts.json";
 import Footer from "./components/footer";
 import { blogNavPop, blogPostListScale, blogPostListReset } from "./animations/archiveAnimations";
 import { blogListPop, spanScale, spanReset } from "./animations/archiveAnimations";
+import axios from "axios";
 import './styles/archive.css';
 
 /**
@@ -48,7 +49,7 @@ function BlogPostList({ posts, filterCategory }) {
 };
 
 
-function Archive() {
+function Archive( {status, user }) {
 
 	const [category, setCategory] = useState(null);
 
@@ -58,14 +59,38 @@ function Archive() {
 	const navigateToLifestyle= () => setCategory('Lifestyle');
 	const navigateToFitness = () => setCategory('Fitness');
 
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [username, setUsername] = useState('');
+  	const [loading, setLoading] = useState(true);
+
+	const checkLoginStatus = async () => {
+		try {
+			const response = await axios.get('http://localhost:3000/isLoggedIn');
+			setIsLoggedIn(response.data.isLoggedIn);
+			setUsername(response.data.username);
+			setLoading(false);
+		} catch (error) {
+			console.error('Error checking login status:', error);
+			setLoading(false);
+		}
+	};
+	
 	useEffect(() => {
 		blogNavPop();
 	}, [])
+	useEffect(() => {
+		checkLoginStatus();
+	}, []);
+	
+	if (loading) {
+		// return blank page (or loading animation)
+		return <div></div>
+	}
 
 	return (
 		<div>
 		<div className="blogs_ui">
-			<Header/>
+			<Header isLoggedIn={isLoggedIn} username={username}/> 
 			<div className="blog_nav_container">
 				<div className="blog_nav">
 	

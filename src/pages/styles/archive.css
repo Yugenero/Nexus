@@ -121,7 +121,7 @@
 	text-align: left;
 	font-size: 20px;
 } .bpl_title {
-	font-weight: bold;
+	font-weight: 500;
 	font-size: 1.7em;
 } .bpl_excerpt {
 	font-size: 1.3em;
@@ -129,7 +129,9 @@
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 1em;
 	color: var(--primary-color-light);
-	font-family: var(--font-family-text);		
+	font-family: var(--font-family-text);
+	
+	
 } 
 
 .blog_post_list_link_img {

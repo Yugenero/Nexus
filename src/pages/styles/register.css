@@ -37,9 +37,7 @@
 	margin: 0;
 	font-family: var(--font-family-design);
 	color: var(--background-color);
-	background: linear-gradient(to right, var(--accent-color-lightred), 
-				var(--accent-color-darkred),var(--accent-color-darkblue), 
-				var(--accent-color-lightblue));
+	background: linear-gradient(to right, var(--accent-color-lightred), var(--accent-color-lightblue));
 	animation: rainbow 1s ease-in-out infinite;
 	background-clip: text;
 	-webkit-background-clip:text;
@@ -114,7 +112,7 @@
 	display: inline-block;
 	font-size: 0.5em;
 	margin-top: 8px;
-	background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-darkred), var(--accent-color-darkblue), var(--accent-color-lightblue));
+	background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-lightblue));
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;

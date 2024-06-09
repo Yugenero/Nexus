@@ -42,7 +42,7 @@
 
 .title_nexus {
 	margin: 0;
-	background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-darkred), var(--accent-color-darkblue), var(--accent-color-lightblue));
+	background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-lightblue));
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
@@ -55,7 +55,7 @@
 	position: relative;
 	display: inline-block;
 	margin: 0;
-	background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-darkred), var(--accent-color-darkblue), var(--accent-color-lightblue));
+	background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-lightblue));
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;

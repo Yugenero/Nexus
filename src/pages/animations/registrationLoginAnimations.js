@@ -1,6 +1,5 @@
 import anime from 'animejs';
 
-
 /**
  * Registration animations
  */

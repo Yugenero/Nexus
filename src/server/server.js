@@ -213,5 +213,4 @@ app.listen(port, (error) => {
     console.log('App.listen Error:' + error);
   }
   console.log('Server is running on port ' + port);
-  console.log('postRoutes.js' + postRoutes.router.stack);
 });

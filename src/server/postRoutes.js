@@ -10,12 +10,17 @@ const router = express.Router();
 
 /**
  * SCHEMAS
+ * visual representation of the data model on page
+ * -------------
+ * username - date
+ * text
+ * -------------
  */
 const CommentSchema = new mongoose.Schema({
-	username: String,
-	text: String,
-	date: Date
-})
+    username: { type: String, required: true },
+    text: { type: String, required: true },
+    date: { type: Date, default: Date.now }
+});
 
 const BlogPostSchema = new mongoose.Schema({
 	id: String,
@@ -24,7 +29,9 @@ const BlogPostSchema = new mongoose.Schema({
 	likes: { type: Number, default: 0},
 	comments: [CommentSchema], // array of comment schema documents
 });
+
 const BlogPost = mongoose.model('BlogPost', BlogPostSchema);
+const Comment = mongoose.model('Comment', CommentSchema);
 
 /**
  * GET METHODS
@@ -38,19 +45,25 @@ router.get('/getPost', async(req, res) => {
 	}
 })
 
-router.get('/getComments', async(req, res) => {
+router.get('/getComments', async (req, res) => {
     try {
-        console.log("Getting comments: " + req.query.id);
+		/**
+		 * Client: await axios.get('http://localhost:3000/getComments', 
+		 * 				{ params: { id: postId }});
+		 * postId is passed as a query parameter and is accessed via req.query.id
+		 */
+		console.log('/getComments called with postId: ', req.query.id);
         const postId = req.query.id;
-        if (!mongoose.Types.ObjectId.isValid(postId)) {
-            return res.status(400).json('Invalid post ID');
+        const post = await BlogPost.findOne({id : postId});
+        if (!post) {
+            return res.status(404).json('Post not found');
         }
-        const post = await BlogPost.findById(postId);
         res.status(200).json(post.comments);
-    } catch {
+    } catch (error) {
+        console.error('Error retrieving comments:', error);
         res.status(500).json('Error retrieving comments');
     }
-})
+});
 
 /**
  * POST METHODS
@@ -87,7 +100,40 @@ router.post('/deleteAllPosts', async(req, res) => {
 	}
 })
 
-/*router.post('/likePost',  async (req, res) => {
+router.post('/comment', async (req, res) => {
+    try {
+        const { id, username, text } = req.body;
+        console.log('Received payload:', req.body);
+
+        if (!id || !username || !text) {
+            console.log('Validation failed: Missing id, username, or text');
+            return res.status(400).json({ error: 'Post ID, username, and text are required' });
+        }
+        const post = await BlogPost.findOne({id});
+        if (!post) {
+            console.log('Post not found for ID:', id);
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        const comment = {
+			username,
+			text,
+			date: new Date()
+		};
+
+		// console.logs for debugging
+        post.comments.push(comment);
+        await post.save();
+        res.status(200).json(post.comments);
+
+    } catch (error) {
+        console.error('Error commenting on post:', error);
+        res.status(500).json({ error: 'Error commenting on post' });
+    }
+});
+
+
+router.post('/likePost',  async (req, res) => {
 	try {
 	  const postId = req.body.id;
 	  const post = await BlogPost.findById(postId);
@@ -99,21 +145,5 @@ router.post('/deleteAllPosts', async(req, res) => {
 	}
 });
 
-router.post('/comment', async(req, res) => {
-	try {
-		const postId = req.body.id;	
-		const comment = {
-			username: req.body.username,
-			text: req.body.text,
-			date: new Date()
-		};
-		const post = await BlogPost.findById(postId);
-		post.comments.push(comment);
-		await post.save();
-		res.status(200).json(post);
-	} catch {
-		res.status(500).json('Error commenting on post');
-	}
-});*/
 
-module.exports = { BlogPost, router } ;
+module.exports = { BlogPost, Comment, router } ;

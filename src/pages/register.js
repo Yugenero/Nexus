@@ -164,7 +164,7 @@ function Register() {
 			<div className="registration_visual_overlay">
 				<h1 className="nexus">Nexus</h1>
 				<p className="nexus_text">
-					A Personal and Developer Blog
+					A Personal Developer Blog
 					<p>© 2024 Nelson Rodriguez</p>
 				</p>
 			</div>

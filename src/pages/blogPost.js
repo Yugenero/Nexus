@@ -16,31 +16,7 @@ import './styles/blogPost.css';
  *
  */
 
-function CommentSection({ postId, user }) {
-
-	/*const [isLoggedIn, setIsLoggedIn] = useState(false);
-  	const [loading, setLoading] = useState(true);
-
-	const checkLoginStatus = async () => {
-		try {
-			const response = await axios.get('http://localhost:3000/isLoggedIn');
-			setIsLoggedIn(response.data.isLoggedIn);
-			setUsername(response.data.username);
-			setLoading(false);
-		} catch (error) {
-			console.error('Error checking login status:', error);
-			setLoading(false);
-		}
-	};
-	
-	useEffect(() => {
-		checkLoginStatus();
-	}, []);
-	
-	if (loading) {
-		// return blank page (or loading animation)
-		return <div> Log in to comment </div>
-	}*/
+function CommentSection({ postId, user, isLoggedIn }) {
 
 	const[comments, setComments] = useState([]);
 	const[newComment, setNewComment] = useState('');
@@ -49,23 +25,33 @@ function CommentSection({ postId, user }) {
 		const fetchComments = async () => {
 		  try {
 			const response = await axios.get('http://localhost:3000/getComments', { params: { id: postId }});
-			console.log(response.data);
-			setComments(response.data.comments);
+			console.log('response data: ', response.data);
+			setComments(response.data);
+			console.log('comments state after setting page: ', comments);
 		  } catch (error) { console.error('Error fetching comments:', error); }
 		};
 		fetchComments();
-	}, [postId]);
+	}, []);
 
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		axios.post('http://localhost:3000/comment', { id: postId, username: user.username, text: newComment })
-		.then((response) => {
-			setComments(prevComments => [...prevComments, { username: user.username, text: newComment, date: new Date() }]);
-			setNewComment('');
-		})
-		.catch(error => console.error('Error posting comment: ', error));
-	}
+		try {
+			const payload = { id: postId, username: user, text: newComment };
+			console.log('Sending payload:', payload);
+			const response = await axios.post('http://localhost:3000/comment', payload);
+			if (response.status === 200) {
+				setComments(prevComments => [...prevComments, { username: user, text: newComment, date: new Date() }]);
+				setNewComment('');
+			} else {
+				console.error('Failed to post comment:', response.data);
+				alert('Failed to post comment');
+			}
+		} catch (error) {
+			console.error('Error posting comment:', error);
+			alert('Error posting comment');
+		}
+	};
 
 	return (
 		<div className="comment_section">
@@ -76,7 +62,7 @@ function CommentSection({ postId, user }) {
 
 			{comments.map((comment, index) => (
 				<div key={index}>
-					<p>{comment.username}</p>
+					<p>{comment.username} <span>{new Date(comment.date).toLocaleString()}</span></p>
 					<p>{comment.text}</p>
 				</div>
 			))}
@@ -91,7 +77,7 @@ function CommentSection({ postId, user }) {
  * @returns 
 */
 
-function BlogPost( { status, user }) {
+function BlogPost() {
 
 	const { id } = useParams();
 	const [post, setPost] = useState(null);
@@ -171,7 +157,7 @@ function BlogPost( { status, user }) {
 					<ReactMarkdown>{post.content}</ReactMarkdown>
 				</article>
 			</div>
-			<CommentSection postId={id} user={user}/>
+			<CommentSection postId={id} user={username} isLoggedIn={isLoggedIn}/>
 			<Footer/>
 		</div>
 

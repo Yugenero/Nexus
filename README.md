@@ -1,4 +1,4 @@
-<img width="260" alt="image" src="https://github.com/Yugenero/Nexus/assets/44268896/262686fb-d9ec-406a-a152-678e316f0917">  
+<img width="229" alt="image" src="https://github.com/Yugenero/Nexus/assets/44268896/3c8964df-417a-4d63-8039-dfa1abcb50a0">
   
 A personal blog and newsletter where I share my own opinions on Tech, CS/Engineering, Lifestyle among many other things
 

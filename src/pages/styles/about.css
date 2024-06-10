@@ -24,14 +24,16 @@
 	height: 700px; 
 	object-fit: cover;
 } .gt {
+	font-weight: normal;
 	display: inline-block;
 	font-family: var(--font-family-gt);
-	color: var(--accent-color-gt);
+	color: rgb(84, 88, 90);
 } .gt:hover {
+	color: var(--accent-color-gt);
 	text-decoration: none;
 	cursor: pointer;
 } .gt:visited {
-	color: var(--accent-color-gt);
+	color: rgb(84, 88, 90);
 	text-decoration: none;
 }
 
@@ -66,12 +68,6 @@
 	font-size: 20px;
 	line-height: 1.3;
 	font-family: var(--font-family-design);
-}
-
-.what_is_nexus {
-	font-weight: normal;
-	font-family: var(--font-family-design);
-	color: var(--primary-color);
 }
 
 #nexus {

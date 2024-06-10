@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import { slideTitle, slideText, slideImage, gtScale, gtUnScale } from "./animations/aboutAnimations";
+import { slideText, slideImage, gtScale, gtUnScale } from "./animations/aboutAnimations";
 import './styles/about.css';
 import Link from '@material-ui/core/Link';
 function About() {
 
 	useEffect(() => {
-		slideTitle();
 		slideText();
 		slideImage();
 	})
@@ -14,17 +13,16 @@ function About() {
 		<div className="main_container">
 			<div className="about_container">
 
-				<h1 className="what_is_nexus"> What is 
-					<span id="nexus"> Nexus </span></h1>
-
 				<div className="text_container">
 					<p className="about_text"> 
 						I'm Nelson and I'm a recent CS graduate from <span>
 						<Link className="gt" onMouseEnter={gtScale} onMouseLeave={gtUnScale}
-							style={{textDecoration: 'none', fontWeight: '600'}} 
+							style={{textDecoration: 'none', fontWeight: '500', color: '#B3A369'}} 
 							href="https://www.cc.gatech.edu/">
 							Georgia Tech
-						</Link></span>. 
+						</Link></span>
+						<br/><br/>
+						 
 						I created this blog for my pursuit of writing and affection for Software, Technology, 
 						and Lifestyle. This blog serves as a canvas for my reflections and opinions, offering a platform to
 						articulate thoughts that often evade expression in my day-to-day life. 

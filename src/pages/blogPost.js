@@ -5,21 +5,28 @@ import Header from "./components/header";
 import postList from "./data/posts.json";
 import ReactMarkdown from "react-markdown";
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { IconButton } from "@material-ui/core";
+import { Button, IconButton, TextField } from "@material-ui/core";
 import { heartScale } from "./animations/blogPostAnimations";
+import { makeStyles } from '@material-ui/core/styles';
 import axios from "axios"; // Note: React import
 import './styles/blogPost.css';
 
+const useStyles = makeStyles({
+	submitButton: {
+	  backgroundColor: 'var(--background-color)',
+	},
+  });
 
 /**
  * Commenting Component
- *
  */
 
 function CommentSection({ postId, user, isLoggedIn }) {
 
 	const[comments, setComments] = useState([]);
 	const[newComment, setNewComment] = useState('');
+	const classes = useStyles();
+
 
 	useEffect(() => {
 		const fetchComments = async () => {
@@ -31,7 +38,7 @@ function CommentSection({ postId, user, isLoggedIn }) {
 		  } catch (error) { console.error('Error fetching comments:', error); }
 		};
 		fetchComments();
-	}, []);
+	}, [postId]);
 
 
 	const handleSubmit = async (event) => {
@@ -53,19 +60,25 @@ function CommentSection({ postId, user, isLoggedIn }) {
 		}
 	};
 
+	comments.sort((a, b) => new Date(b.date) - new Date(a.date));
+	
 	return (
 		<div className="comment_section">
 			<form onSubmit={handleSubmit}>
-				<input type="text" value={newComment} onChange={e => setNewComment(e.target.value)} required/>
-				<button type="submit"> Submit </button>
+				<TextField className="comment_box" type="text" multiline label="Add a comment..." value={newComment}  onChange={e => setNewComment(e.target.value)}/>
+				<Button className={classes.submitButton} type="submit"> Submit </Button>
 			</form>
 
-			{comments.map((comment, index) => (
-				<div key={index}>
-					<p>{comment.username} <span>{new Date(comment.date).toLocaleString()}</span></p>
-					<p>{comment.text}</p>
-				</div>
-			))}
+			{comments.map((comment, index) => {
+				const date = new Date(comment.date);
+				const formattedDate = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
+				return (
+					<div className="comment" key={index}>
+						<p className="comment_data">{comment.username} <span>{formattedDate}</span></p>
+						<p className="comment_content">{comment.text}</p>
+					</div>
+				);
+			})}
 		</div>
 	)
 }

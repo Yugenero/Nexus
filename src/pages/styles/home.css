@@ -70,7 +70,7 @@ a {
 	justify-content: space-between;
 	font-size: 0.6em;
 	margin: 0;
-	font-family: var(--font-family-design);
+	font-family: var(--font-family-text);
 } .hc_recent_links {
 	display: flex;
 	flex-direction: row;
@@ -97,14 +97,22 @@ a {
   	align-items: center;
   	padding: 4px 6px; /* top-bottom, left-right */
   	width: 100vw;
-	background-color: var(--background-color);
+	background-color: white;
  	font-family: var(--font-family-design);
-	border-bottom: var(--break-color) 1px solid;
 }
 .header_logo {
-	color: var(--secondary-color);
+	margin: 0;
+    background: linear-gradient(90deg, var(--accent-color-lightred), var(--accent-color-lightblue));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: var(--font-family-design);
+    -webkit-user-select: none;
+    user-select: none;
+
 	padding: 15px;
-	margin-left: 70px;
+	margin-left: 270px;
 	font-size: 1em;
 }
 .header_logo:hover {
@@ -115,7 +123,7 @@ a {
 	flex-direction: row;
 	justify-content: space-between;
 	width: 30%;
-	margin-right: 70px;
+	margin-right: 270px;
 	padding: 15px;
 	color: var(--primary-color);
 }
@@ -129,7 +137,8 @@ a {
 	display: inline-block;
 	position: relative;
 	color: var(--primary-color);
-	font-weight: 500;
+	font-family: var(--font-family-text);
+	font-weight: 400;
 } .header_nav_item:hover {
 	cursor: pointer;
 } 
@@ -158,25 +167,6 @@ a {
 }
 
 
-/**
- * Header Logo Animation
- */
-.header_logo {
-	background: linear-gradient(to right, var(--accent-color-lightred), var(--accent-color-lightblue));
-	animation: rainbow 1s ease-in-out infinite;
-	background-clip: text;
-	-webkit-background-clip:text;
-	transition: color .3s ease-in-out;
- }.header_logo:hover {
-	color:rgba(0,0,0,0);
-}
-@keyframes rainbow { 
-	0%{background-position:left}
-	50%{background-position:right}
-	100%{background-position:left}
-}
-
-
 
 /**
  * Footer Styles
@@ -186,15 +176,15 @@ a {
 	flex-direction: column;
 	padding: 2em 2em;
 	z-index: 1000;
+	margin-left: 200px;
 
 }.footer_logo {
 	user-select: none;
 	align-self: center;
 	font-family: var(--font-family-design);
-	font-size: 1em;
+	font-size: 1.2em;
 	padding: 0.5em 1em; /* Top bottom left right*/
 	color: var(--secondary-color);
-
 }
 
 .footer_logo_text {
@@ -204,11 +194,13 @@ a {
 	font-family: var(--font-family-text);
 	color: var(--primary-color);
 	font-size: 0.3em;
+
 }
 .footer_socials_container {
 	display: flex;
 	flex-direction: column;
 	padding: 0 2em;
+	margin-right: 200px;
 }
 .footer_socials {
 	display: flex;

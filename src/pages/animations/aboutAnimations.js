@@ -1,19 +1,10 @@
 import anime from 'animejs/lib/anime.es.js';
 
-function slideTitle() {
-	anime ({
-		targets: '.what_is_nexus',
-		translateY: [-200, 0],
-		duration: 500,
-	});
-}
-
 function slideText() {
 	anime ({
 		targets: '.text_container',
 		translateX: [-1000, 0],
 		duration: 800,
-		delay: 250,
 	});
 }
 
@@ -22,7 +13,7 @@ function slideImage() {
 		targets: '.me',
 		translateY: [1000, 0],
 		duration: 1000,
-		delay: 500,
+		delay: 250,
 	})
 }
 
@@ -30,8 +21,9 @@ function gtScale() {
 	anime ({
 		targets: '.gt',
 		scale: [1, 0.9],
+		color: '#B3A369',
 		direction: 'alternate',
-		loop: 1,
+		loop: false,
 	})
 } function gtUnScale() {
 	anime ({
@@ -39,9 +31,9 @@ function gtScale() {
 		scale: [0.9, 1],
 		duration: 1000,
 		direction: 'alternate',
-		loop: 1,
+		loop: false,
 	})
 
 }
 
-export { slideTitle, slideText, slideImage, gtScale, gtUnScale };
+export { slideText, slideImage, gtScale, gtUnScale };

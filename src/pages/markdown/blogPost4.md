@@ -8,10 +8,20 @@ category: Lifestyle
 excerpt:
 ---
 
-Over the course of my time in college, I started to understand the importance of physical appearances and the immense power and sense of self-confidence that one can derive from feeling confident in themselves, both physically and mentally. That being said, I’ve learned a couple of things, not just about looksmaxxing, but about physical appearances in general, and I want to write about those things here.
+# How I Made Nexus
 
-Looksmaxxing is basically a movement that aims to bring people up to their highest physical and aesthetic potential (i.e. maxxing attractiveness). Before going any further, I will say that Lookmaxxing is not a substitute for having meaningful relationships, basic life skills, education, financial stability, professional success, fulfilling hobbies(unless you consider Lookmaxxing a hobby), physical health, or really anything considered a basic or fundamental need. I feel like a lot of people into the hole of looksmaxxing, not only make it their entire personality (the black pill), but refuse to acknowledge or consider root problems in their lives that may be contributing to their lack of confidence, health, direction, discipline, and/or happiness. 
+Hey, my name is Nelson, I'm a recent graduate of computer science from <a style="color: #B3A369; font-family: 'Georgia'; font-weight: " href="https://www.cc.gatech.edu/">Georgia Tech</a> where I concentrated in information networks and media applications and I just want to document and talk a little bit about my journey through the development of this blog.
 
-As someone who has struggled with body dysmorphia, appearance related insecurities, and dating, there is much, much more to life and relationships than a number on a scale, and identifying these root causes is a crucial step in battling these issues. that being said, unless one’s basic needs are met, I feel like most people would not find much benefit from doing the things that I am about to list down. Once those needs are at the very minimum being acknowledged, Looksmaxxing is great, actionable advice one can take in order to achieve one’s highest physical and aesthetic potential. Here, I intend to pin down to main ideas of Looksmaxxing and highlight the benefits, and potential downsides, and overall just kind of have an interesting discussion about physical appearances, insecurities, dating, and life in general (In the footnotes).
+This blog was developed using the **<span style="color:green">M</span><span style="color: orange">E</span><span style="color: turquoise">R</span><span style="color: lightgreen">N</span>** tech-stack (MongoDB, Express.js, React, Node.js) and is arguably one of the most used (if not most) tech stacks in modern day web-development. 
 
-Down below I’ve simplified (of what I have deemed to be) the most important facets of looksmaxxing, down to a couple of bullet points. Doing everything in this list does not a guarantee to anything. But making an effort to incorporate these ideas into your life will build discipline and confidence that will work for you, not against you. Ideally, weaponizing these two ideas will propagate into other areas of your life so that you can focus on the things that truly matter most. Many of these things are achieved through a routine of hard-work, consistency, intensity, and delayed gratification. 
+I really created this blog for 2 purposes:
+
+1. To learn **<span style="color:green">M</span><span style="color: orange">E</span><span style="color: turquoise">R</span><span style="color: lightgreen">N** in an applied environment
+2. To write blogs like this!
+
+When I started constructing this website, the only experience I had with **<span style="color:green">M</span><span style="color: orange">E</span><span style="color: turquoise">R</span><span style="color: lightgreen">N</span>** was React -- I had only created what was a really surface level personal portfolio website, which one might argue that using React was really overkill for the purpose it served. The thing that makes React so special is its ability to break down a web page into these things called components. For instance, if you have a header and a footer that is used in different instances of your webpage, you can componentize them into a function and simply do a functional call everytime you want to use them, this kind of modularity and resuability is what drew me to using React for the purpose of building a blogging webpage.
+
+
+
+
+

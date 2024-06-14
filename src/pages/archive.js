@@ -90,10 +90,8 @@ function Archive( {status, user }) {
 	return (
 		<div>
 		<div className="blogs_ui">
-			<Header isLoggedIn={isLoggedIn} username={username}/> 
-			<div className="blog_nav_container">
+			<Header isLoggedIn={isLoggedIn} username={username}/> 				
 				<div className="blog_nav">
-	
 					<a className="blog_nav_topic" onClick={navigateToAll}
 						onMouseEnter={spanScale}
 						onMouseLeave={spanReset}>
@@ -115,8 +113,6 @@ function Archive( {status, user }) {
 						onMouseLeave={spanReset}>
 						<span className="nav_topic">Lifestyle</span></a>
 				</div>
-			</div>
-			<div className="blogs_break"></div>
 			<BlogPostList posts={postList} className="bpl" filterCategory={category}/>
 			<Footer/>
 		</div>

@@ -21,7 +21,7 @@ This architecture allows developers to construct a three-tier application archit
 
 In the past couple of years, numerous no-code solutions for building blogs have become commonplace in the digital space, which begs the question: 
 
-**Why not just save myself the trouble and use an existing solution like WordPress?**
+**<span style="font-family: system-ui">Why not just save myself the trouble and use an existing solution like WordPress?**
 
 Although there are many existing solutions for creating and maintaining a blog, I believe there was value in deepening my understanding of the core software architecture that makes up many of the full-scale applications we see on the web today. I came to realize that not every project idea I had had to be a solution to an existing problem and could just be done for the sake of learning and enjoyment. 
 

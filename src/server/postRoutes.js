@@ -4,7 +4,7 @@
 
 const mongoose = require('mongoose');
 const express = require('express');
-const fs = require('fs');
+const fs = require('fs'); 
 const path = require('path');
 const router = express.Router();
 
@@ -67,6 +67,8 @@ router.get('/getComments', async (req, res) => {
 
 /**
  * POST METHODS
+ * remember that importing the posts will not overwrite the existing posts
+ * so if you import the posts you will have duplicates
 */
 router.post('/importPosts', async(req, res) => {
 	try {
@@ -91,6 +93,9 @@ router.post('/importPosts', async(req, res) => {
 	}
 })
 
+/**
+ * All data associated with post is deleted
+ */
 router.post('/deleteAllPosts', async(req, res) => {
 	try {
 		await mongoose.connection.db.collection('blogposts').drop();

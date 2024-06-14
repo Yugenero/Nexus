@@ -1,10 +1,11 @@
 --- 
 id: 1
-author: Nelson E. Rodriguez
+author: 
 date: 
-title: Why and How I Made This Blog
+title: In progress
 imgURL: /images/CS_flow2.jpeg
-category: Dev
+category: 
 excerpt:
 ---
+
 

@@ -88,7 +88,7 @@ function LoginField() {
 		.then(response => {
 			if (response.data.isLoggedIn) {
 				console.log(response.data.username + ' is already logged in');
-				setErrorMessage('Seems like youre already logged in!');
+				setErrorMessage('Seems like you\'re already logged in!');
 				setOpen(true);
 				return;
 			}

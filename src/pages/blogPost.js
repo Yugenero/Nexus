@@ -8,6 +8,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Button, IconButton, TextField } from "@material-ui/core";
 import { heartScale } from "./animations/blogPostAnimations";
 import { makeStyles } from '@material-ui/core/styles';
+import rehypeRaw from 'rehype-raw' // plugin to parse raw HTML from markdown
 import axios from "axios"; // Note: React import
 import './styles/blogPost.css';
 
@@ -167,7 +168,7 @@ function BlogPost() {
 					{/**add missing image image */}
 					<img className="post_img" src={post.imgURL} alt={post.title} />
 					{console.log(post.imgURL)}
-					<ReactMarkdown>{post.content}</ReactMarkdown>
+					<ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
 				</article>
 			</div>
 			<CommentSection postId={id} user={username} isLoggedIn={isLoggedIn}/>

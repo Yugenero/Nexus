@@ -51,7 +51,7 @@ mongoose.connect(process.env.MONGO_CLIENT_ID, { useNewUrlParser: true, useUnifie
 const userSchema = new mongoose.Schema({
   username: String,
   email: String,
-  password: String, // Note: In a real-world application, you should hash passwords
+  password: String, // password to be hashed/stored in the database
 }); 
 
 // Create a model from the schema

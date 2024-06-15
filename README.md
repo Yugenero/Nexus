@@ -8,6 +8,8 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 **Back-end**: Express.js/Node.js/MongoDB  
 **Libraries**: MUI/Anime.js  
 
+https://nexus-blog-x.vercel.app/
+
 In the project directory, you can run:
 
 ### `npm start`

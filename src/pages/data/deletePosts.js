@@ -6,7 +6,7 @@ const axios = require('axios');
  */
 async function deleteAllPosts() {
 	try {
-		const response = await axios.post('http://localhost:3000/deleteAllPosts');
+		const response = await axios.post(`${process.env.REACT_APP_API_URL}/deleteAllPosts`);
 		console.log(response.data);
 	} catch (error) {
 		console.log("Error deleting posts: ", error)

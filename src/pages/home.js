@@ -77,7 +77,7 @@ function Home() {
 
 	const checkLoginStatus = async () => {
 		try {
-			const response = await axios.get('http://localhost:3000/isLoggedIn');
+			const response = await axios.get(`${process.env.REACT_APP_API_URL}/isLoggedIn`);
 			setIsLoggedIn(response.data.isLoggedIn);
 			setUsername(response.data.username);
 			setLoading(false);

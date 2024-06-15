@@ -47,8 +47,7 @@ function LoginField() {
 		}
 		
 
-		axios.post('http://localhost:3000/login', { username, password }, { withCredentials: true })
-			.then(response => {
+		axios.post(`${process.env.REACT_APP_API_URL}/login`, { username, password }, { withCredentials: true })			.then(response => {
 				if (response.status === 200) {
 					setErrorMessage('Login successful');
 					setOpen(true);
@@ -84,7 +83,7 @@ function LoginField() {
 	}, [isLoading]);
 
 	useEffect(() => {
-		axios.get('http://localhost:3000/isLoggedIn', { withCredentials: true })
+		axios.get(`${process.env.REACT_APP_API_URL}/isLoggedIn`, { withCredentials: true })
 		.then(response => {
 			if (response.data.isLoggedIn) {
 				console.log(response.data.username + ' is already logged in');
@@ -172,7 +171,7 @@ function Logout( {username} ) {
 	
 	const handleLogout = (event) => {
 		event.preventDefault();
-		axios.post('http://localhost:3000/logout', {}, { withCredentials: true })
+		axios.post(`${process.env.REACT_APP_API_URL}/logout`, {}, { withCredentials: true })
 		.then(response => {
 			if (response.status === 200) {
 				console.log("returning logout status " + false);
@@ -224,7 +223,7 @@ function Login() {
 	const [username, setUsername] = useState('');
 
 	useEffect(() => {
-		axios.get('http://localhost:3000/isLoggedIn', { withCredentials: true })
+		axios.get(`${process.env.REACT_APP_API_URL}/isLoggedIn`, { withCredentials: true })
 		.then(response => {
 			response.data.isLoggedIn ? setIsLoggedIn(true) : setIsLoggedIn(false);
 			setUsername(response.data.username);

@@ -6,7 +6,7 @@ const axios = require('axios'); // Note: Node.js import
  */
 async function importPosts() {
 	try {
-		const response = await axios.post('http://localhost:3000/importPosts');
+		const response = await axios.post(`${process.env.REACT_APP_API_URL}/importPosts`);
 		console.log(response.data);
 	} catch (error) {
 		console.log('Error: ', error);

@@ -16,7 +16,6 @@ function spanScale(event) {
 	anime({
 		targets: event.currentTarget.querySelector('.nav_topic'),
 		scale: 1.2,
-		translateX: 10,
 		duration: 200,
 		easing: 'easeInOutQuad',
 	})
@@ -26,7 +25,6 @@ function spanReset(event) {
 	anime({
 		targets: event.currentTarget.querySelector('.nav_topic'),
 		scale: 1,
-		translateX: 0,
 		duration: 200,
 		easing: 'easeInOutQuad',
 	})

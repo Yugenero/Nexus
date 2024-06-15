@@ -118,7 +118,7 @@ function Register() {
 			return;
 		} 
 
-		axios.post('http://localhost:3000/register', {
+		axios.post(`${process.env.REACT_APP_API_URL}/register`, {
 			username: username,
 			email: email,
 			password: password

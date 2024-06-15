@@ -65,7 +65,7 @@ function Archive( {status, user }) {
 
 	const checkLoginStatus = async () => {
 		try {
-			const response = await axios.get('http://localhost:3000/isLoggedIn');
+			const response = await axios.get(`${process.env.REACT_APP_API_URL}/isLoggedIn`);
 			setIsLoggedIn(response.data.isLoggedIn);
 			setUsername(response.data.username);
 			setLoading(false);
@@ -90,7 +90,8 @@ function Archive( {status, user }) {
 	return (
 		<div>
 		<div className="blogs_ui">
-			<Header isLoggedIn={isLoggedIn} username={username}/> 				
+			<Header isLoggedIn={isLoggedIn} username={username}/> 	
+			<div className="blog_nav_container">			
 				<div className="blog_nav">
 					<a className="blog_nav_topic" onClick={navigateToAll}
 						onMouseEnter={spanScale}
@@ -113,6 +114,7 @@ function Archive( {status, user }) {
 						onMouseLeave={spanReset}>
 						<span className="nav_topic">Lifestyle</span></a>
 				</div>
+			</div>
 			<BlogPostList posts={postList} className="bpl" filterCategory={category}/>
 			<Footer/>
 		</div>

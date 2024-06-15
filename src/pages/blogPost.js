@@ -32,7 +32,7 @@ function CommentSection({ postId, user, isLoggedIn }) {
 	useEffect(() => {
 		const fetchComments = async () => {
 		  try {
-			const response = await axios.get('http://localhost:3000/getComments', { params: { id: postId }});
+			const response = await axios.get(`${process.env.REACT_APP_API_URL}/getComments`, { params: { id: postId }});
 			console.log('response data: ', response.data);
 			setComments(response.data);
 			console.log('comments state after setting page: ', comments);
@@ -47,7 +47,7 @@ function CommentSection({ postId, user, isLoggedIn }) {
 		try {
 			const payload = { id: postId, username: user, text: newComment };
 			console.log('Sending payload:', payload);
-			const response = await axios.post('http://localhost:3000/comment', payload);
+			const response = await axios.post(`${process.env.REACT_APP_API_URL}/comment`, payload);
 			if (response.status === 200) {
 				setComments(prevComments => [...prevComments, { username: user, text: newComment, date: new Date() }]);
 				setNewComment('');
@@ -113,7 +113,7 @@ function BlogPost() {
 	 * Otherwise, render post details */
 	const checkLoginStatus = async () => {
 		try {
-			const response = await axios.get('http://localhost:3000/isLoggedIn');
+			const response = await axios.get(`${process.env.REACT_APP_API_URL}/isLoggedIn`);
 			setIsLoggedIn(response.data.isLoggedIn);
 			setUsername(response.data.username);
 			setLoading(false);

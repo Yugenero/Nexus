@@ -43,7 +43,7 @@ function About() {
 
 			</div>
 			<div className="img_container">
-				<img className="me" src="/images/me.jpeg"/>
+				
 			</div>
 
 		</div>

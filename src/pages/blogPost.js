@@ -53,11 +53,11 @@ function CommentSection({ postId, user, isLoggedIn }) {
 				setNewComment('');
 			} else {
 				console.error('Failed to post comment:', response.data);
-				alert('Failed to post comment');
+				alert('Error posting comment');
 			}
 		} catch (error) {
 			console.error('Error posting comment:', error);
-			alert('Error posting comment');
+			alert('Please login to comment');
 		}
 	};
 

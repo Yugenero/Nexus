@@ -7,7 +7,7 @@
 
 const port = 3000;
 const path = require('path'); // Required to resolve paths
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const WebSocket = require('ws'); // create a WebSocket server
 const http = require('http'); // create an HTTP server
 const morgan = require('morgan'); // log requests to the console
@@ -62,7 +62,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('dev')); // log requests to the console for debugging purposes
 
-app.use(express.static(path.join(__dirname, '..', '..', 'build')));
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
 // Middleware to log requests to the console for images (for debugging purposes)
 app.use('/images', (req, res, next) => {

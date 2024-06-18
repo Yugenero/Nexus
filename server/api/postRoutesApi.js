@@ -139,5 +139,5 @@ router.post('/likePost', async (req, res) => {
         res.status(500).json('Error liking post');
     }
 });
-// test test
+
 module.exports = { BlogPost, Comment, router };

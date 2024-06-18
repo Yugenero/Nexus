@@ -21,6 +21,14 @@
     {
       "src": "/(.*)",
       "dest": "/src/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/public/favicon.ico"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/public/manifest.json"
     }
   ]
 }

@@ -6,13 +6,13 @@
       "use": "@vercel/node"
     },
     {
-      "src": "src/**",
+      "src": "public/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     { "handle": "filesystem" },
     { "src": "/api/(.*)", "dest": "server/api/api.js" },
-    { "src": "/(.*)", "dest": "/src/$1" }
+    { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }

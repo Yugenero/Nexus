@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
         return res.status(401).json('Password is incorrect');
-      }
+      } // test
 
       req.session.userId = user._id;
       req.session.username = user.username;

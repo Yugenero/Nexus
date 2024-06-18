@@ -1,6 +1,8 @@
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+// server/api/api.js
+
 const express = require('express');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
@@ -17,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
-app.use(express.static(path.join(__dirname, '..', '..', 'build')));
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_CLIENT_ID, {
@@ -128,9 +130,9 @@ app.get('/api/isLoggedIn', async (req, res) => {
 app.use('/api', postRoutes);
 
 // Catch-all route to serve the frontend
-app.use(express.static(path.join(__dirname, '..', '..', 'build')));
+app.use(express.static(path.join(__dirname, '..', 'build')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
 
 module.exports = app;

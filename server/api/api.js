@@ -1,3 +1,5 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -5,8 +7,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const cors = require('cors');
 const morgan = require('morgan');
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 const { router: postRoutes } = require('./postRoutesApi');
 

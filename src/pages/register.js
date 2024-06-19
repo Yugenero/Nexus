@@ -116,7 +116,7 @@ function Register() {
 			setErrorMessage('Invalid gmail');
 			setOpen(true);
 			return;
-		} 
+		} //change
 
 		axios.post(`${process.env.REACT_APP_API_URL}/register`, {
 			username: username,

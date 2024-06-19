@@ -28,6 +28,6 @@ module.exports = async (req, res) => {
       res.status(200).json('Login successful');
     } catch (error) {
       res.status(400).json('Login error: ' + error.message);
-    }
+    } // change
   });
 };

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const BlogPost = require('../models/blogpost');
-require('dotenv').config();
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 mongoose.connect(process.env.MONGO_CLIENT_ID, {
   useNewUrlParser: true,

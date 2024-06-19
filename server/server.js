@@ -203,7 +203,7 @@ app.get('/isLoggedIn', async (req, res) => {
 // catch all route for serving index.html
 app.get('*', (req, res) => {
   console.log(`Serving index.html for route: ${req.path}`);
-  res.sendFile(path.join(__dirname, '..', '..', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
 
 

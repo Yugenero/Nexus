@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && npm run build"
+    "heroku-postbuild": "npm run build && npm run server"
   },
   "keywords": [],
   "author": "",

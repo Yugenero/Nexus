@@ -1,7 +1,6 @@
 {
   "name": "blogger",
   "version": "0.1.0",
-  "homepage": "https://git.heroku.com/nexus-x-blog.git",
   "private": true,
   "engines": {
     "node": "21.7.1"

@@ -5,7 +5,6 @@
  * Handles user registration, and will handle user login in the the future
  */
 
-const port = process.env.PORT || 3000;
 const path = require('path'); // Required to resolve paths
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const WebSocket = require('ws'); // create a WebSocket server
@@ -19,6 +18,7 @@ const mongoose = require('mongoose'); // connect to MongoDB
 const cors = require('cors'); // allow cross-origin requests
 const bcrypt = require('bcrypt'); // hash passwords
 const jwt = require('jsonwebtoken');
+const port = process.env.PORT || 3000;
 
 const postRoutes = require('./postRoutes.js');
 

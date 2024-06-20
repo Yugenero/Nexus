@@ -8,8 +8,8 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 **Back-end**: Express.js/Node.js/MongoDB  
 **Libraries**: MUI/Anime.js  
 
-Deployed with Vercel at the following URL:
-https://nexus-blog-x.vercel.app/
+Deployed with Heroku at the following link:
+[nexus-blog-x](https://nexus-blog-x-b20ff15640c7.herokuapp.com/)
 
 To run the project locally in the terminal, in the project directory run
 

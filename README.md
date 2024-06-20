@@ -8,8 +8,10 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 **Back-end**: Express.js/Node.js/MongoDB  
 **Libraries**: MUI/Anime.js  
 
-Deployed with Heroku at the following link:
+Deployed and hosted with Heroku at the following link:
 [nexus-blog-x](https://nexus-blog-x-b20ff15640c7.herokuapp.com/)
+
+---
 
 To run the project locally in the terminal, in the project directory run
 
@@ -28,11 +30,6 @@ and run
 $```nodemon server.js``` or $```node server.js```
 
 ---
-
-$```npm test```
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 $```npm run build```
 

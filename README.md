@@ -8,7 +8,7 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 **Back-end**: Express.js/Node.js/MongoDB  
 **Libraries**: MUI/Anime.js  
 
-Deployed and hosted with Heroku at the following link:
+Deployed and hosted with Heroku @
 [nexus-blog-x](https://nexus-blog-x-b20ff15640c7.herokuapp.com/)
 
 ---

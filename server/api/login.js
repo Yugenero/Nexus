@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
   sessionMiddleware(req, res, async () => {
     try {
       const { username, password } = req.body;
-      if (!username || !password) {
+      if (!username || !password) { // test
         return res.status(400).json('Missing username or password');
       }
 

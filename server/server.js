@@ -5,7 +5,7 @@
  * Handles user registration, and will handle user login in the the future
  */
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const path = require('path'); // Required to resolve paths
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const WebSocket = require('ws'); // create a WebSocket server

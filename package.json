@@ -38,14 +38,13 @@
   },
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
-    "start": "node server/server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "write_to_blogArray": "node public/main.js",
     "local-server": "nodemon server/server.js",
-    "start-server": "node server/server.js",
-    "heroku-postbuild": "npm run build"
+    "start-server": "node server/server.js"
   },
   "resolutions": {
     "react": "17.0.2"
@@ -69,6 +68,7 @@
     ]
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.8",
     "nodemon": "^3.1.0"
   }
 }

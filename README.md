@@ -9,7 +9,7 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 **Libraries**: MUI/Anime.js  
 
 Deployed and hosted with Heroku @
-[nexus-blog-x](https://nexus-blog-x-b20ff15640c7.herokuapp.com/)
+[nexus-blog-x](https://nexus-blog-x-b20ff15640c7.herokuapp.com/) (currently down for maintenance)
 
 ---
 

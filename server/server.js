@@ -39,7 +39,6 @@ app.use(session({
 
 const server = http.createServer(app); // create an HTTP server
 // Create a WebSocket server
-const wss = new WebSocket.Server({ server: server, path: '/ws' });
 
 // Connect to MongoDB Atlas
 mongoose.connect(process.env.MONGO_CLIENT_ID, { useNewUrlParser: true, useUnifiedTopology: true })

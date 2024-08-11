@@ -8,7 +8,8 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 **Back-end**: Express.js/Node.js/MongoDB  
 **Libraries**: MUI/Anime.js  
 
-Deployed and hosted with **render** ->
+Deployed and hosted with [<img width="80" alt="image" src="https://github.com/user-attachments/assets/4ad55d6a-3792-4ec5-a04c-b1588e47752d">](https://render.com/)
+
 [Nexus](https://nexus-vdml.onrender.com)
 
 ---

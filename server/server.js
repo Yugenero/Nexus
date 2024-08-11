@@ -15,7 +15,7 @@ const MongoStore = require('connect-mongo'); // Required for session management
 const app = express(); // create an Express app
 const mongoose = require('mongoose'); // connect to MongoDB
 const cors = require('cors'); // allow cross-origin requests
-const bcrypt = require('bcrypt'); // hash passwords
+const bcrypt = require('bcryptjs'); // hash passwords
 const port = process.env.PORT || 3000;
 
 const postRoutes = require('./postRoutes.js');

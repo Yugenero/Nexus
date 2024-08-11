@@ -6,7 +6,7 @@
  */
 
 const path = require('path'); // Required to resolve paths
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 const WebSocket = require('ws'); // create a WebSocket server
 const http = require('http'); // create an HTTP server
 const morgan = require('morgan'); // log requests to the console

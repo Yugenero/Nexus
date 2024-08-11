@@ -44,8 +44,7 @@
     "eject": "react-scripts eject",
     "local-server": "nodemon server/server.js",
     "start-server": "node server/server.js",
-    "write_to_blogArray": "node public/main.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    "write_to_blogArray": "node public/main.js"
   },
   "resolutions": {
     "react": "17.0.2"

@@ -9,7 +9,7 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 **Libraries**: MUI/Anime.js  
 
 Deployed and hosted with fly.io @
-[nexus-blog-x]([https://nexus-blog-x-b20ff15640c7.herokuapp.com/](https://nexus-vdml.onrender.com)) (currently down for maintenance)
+[Nexus](https://nexus-vdml.onrender.com) (currently down for maintenance)
 
 ---
 

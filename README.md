@@ -8,8 +8,8 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 **Back-end**: Express.js/Node.js/MongoDB  
 **Libraries**: MUI/Anime.js  
 
-Deployed and hosted with fly.io @
-[Nexus](https://nexus-vdml.onrender.com) (currently down for maintenance)
+Deployed and hosted with **render** ->
+[Nexus](https://nexus-vdml.onrender.com)
 
 ---
 

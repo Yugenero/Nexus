@@ -42,9 +42,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "write_to_blogArray": "node public/main.js",
     "local-server": "nodemon server/server.js",
-    "start-server": "node server/server.js"
+    "start-server": "node server/server.js",
+    "write_to_blogArray": "node public/main.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
   },
   "resolutions": {
     "react": "17.0.2"

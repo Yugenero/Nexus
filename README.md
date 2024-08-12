@@ -10,7 +10,7 @@ A personal blog and newsletter where I share my own opinions on Tech, CS/Enginee
 
 Deployed and hosted with [<img width="80" alt="image" src="https://github.com/user-attachments/assets/4ad55d6a-3792-4ec5-a04c-b1588e47752d">](https://render.com/)
 
-[Nexus](https://nexus-vdml.onrender.com)
+[Nexus](https://nexus-vdml.onrender.com) (render cloud service bug: close and reopen if page is not showing)
 
 ---
 
